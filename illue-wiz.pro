@@ -10,13 +10,11 @@ CONFIG += c++17
 
 SOURCES += \
     dbmanager.cpp \
-    ledmodule.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     dbmanager.h \
-    ledmodule.h \
     mainwindow.h
 
 FORMS += \

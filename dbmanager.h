@@ -1,7 +1,6 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
-// #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSqlRecord>

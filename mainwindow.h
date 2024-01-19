@@ -19,14 +19,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
 private slots:
     void testFunction();
-
-    void on_pushButton_clicked();
-    void on_pushButtonAdd_clicked();
-    void on_pushButtonRemove_clicked();
-    void on_pushButtonRetrieveAll_clicked();
 
 private:
     Ui::MainWindow *ui;
