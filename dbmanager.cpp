@@ -141,7 +141,7 @@ QString DbManager::retrieveAllPersons() const
         }
         else
         {
-            result += ", " + query.value(1).toString();
+            result += "\n" + query.value(1).toString();
         }
         i++;
     }
