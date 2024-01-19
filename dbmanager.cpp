@@ -1,6 +1,6 @@
 #include "dbmanager.h"
 
-DbManager::DbManager(const QString& path)
+DbManager::DbManager(const QString &path)
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName(path);
@@ -43,11 +43,12 @@ bool DbManager::createTable()
     return success;
 }
 
-bool DbManager::addPerson(const QString& name)
+bool DbManager::addPerson(const QString &name)
 {
     bool success = false;
 
-    if (name.isEmpty()) {
+    if (name.isEmpty())
+    {
         qDebug() << "Adding person failed: name cannot be empty";
         return success;
     }
@@ -55,7 +56,7 @@ bool DbManager::addPerson(const QString& name)
     QSqlQuery query;
     query.prepare("INSERT INTO people (name) VALUES (:name)");
     query.bindValue(":name", name);
-    if(query.exec())
+    if (query.exec())
     {
         success = true;
     }
@@ -67,15 +68,17 @@ bool DbManager::addPerson(const QString& name)
     return success;
 }
 
-bool DbManager::removePerson(const QString& name)
+bool DbManager::removePerson(const QString &name)
 {
 
-    if(name.isEmpty()) {
+    if (name.isEmpty())
+    {
         qDebug() << "removePerson failed: name cannot be empty";
         return false;
     }
 
-    if (!personExists(name)) {
+    if (!personExists(name))
+    {
         qDebug() << "removePerson failed: " << name << " does not exist";
         return false;
     }
@@ -84,17 +87,21 @@ bool DbManager::removePerson(const QString& name)
     query.prepare("DELETE FROM people WHERE name = (:name) ");
     query.bindValue(":name", name);
 
-    if (query.exec()) {
+    if (query.exec())
+    {
         return true;
-    } else {
+    }
+    else
+    {
         qDebug() << "removePerson failed: " << query.lastError();
         return false;
     }
 }
 
-bool DbManager::personExists(const QString& name)
+bool DbManager::personExists(const QString &name)
 {
-    if(name.isEmpty()) {
+    if (name.isEmpty())
+    {
         qDebug() << "removePerson failed: name cannot be empty";
         return false;
     }
@@ -126,12 +133,13 @@ QString DbManager::retrieveAllPersons() const
     query.exec();
     QString result;
     unsigned i{0};
-    while(query.next())
+    while (query.next())
     {
         if (i == 0)
         {
             result += query.value(1).toString();
-        } else
+        }
+        else
         {
             result += ", " + query.value(1).toString();
         }
