@@ -3,22 +3,17 @@
 MainModel::MainModel(QObject *parent, const QString &db_path)
     : QObject{parent}
 {
+    qDebug() << "Starting MainModel";
     this->db = QSqlDatabase::addDatabase("QSQLITE");
     this->db.setDatabaseName(db_path);
-    this->openDB();
-}
-
-bool MainModel::openDB()
-{
-    this->db.open();
-    if (this->db.isOpenError())
+    if (this->db.open())
     {
-        qDebug() << "Database  : " << db.lastError().databaseText();
-        qDebug() << "Driver    : " << db.lastError().driverText();
-        qDebug() << "Error code: " << db.lastError().nativeErrorCode();
-        return false;
+        qDebug() << "Database: connection ok";
     }
-    return true;
+    else
+    {
+        qDebug() << "Error: connection with database failed";
+    }
 }
 
 MainModel::~MainModel()

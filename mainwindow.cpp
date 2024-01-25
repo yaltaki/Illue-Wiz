@@ -2,17 +2,27 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), mm(new MainModel)
+    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->db = QSqlDatabase::addDatabase("QSQLITE");
+    this->db.setDatabaseName("main.db");
+    if (this->db.open())
+    {
+        qDebug() << "Database: connection ok";
+    }
+    else
+    {
+        qDebug() << "Error: connection with database failed";
+    }
 
     QSqlQueryModel *module_model_1 = new QSqlQueryModel;
     module_model_1->setQuery("SELECT id, name FROM module ORDER BY id DESC");
     module_model_1->setHeaderData(0, Qt::Horizontal, tr("id"));
     module_model_1->setHeaderData(1, Qt::Horizontal, tr("Name"));
     this->ui->moduleComboBox_1->setModel(module_model_1);
+    this->ui->moduleComboBox_1->setModelColumn(1);
 
-    delete module_model_1;
 }
 
 MainWindow::~MainWindow()

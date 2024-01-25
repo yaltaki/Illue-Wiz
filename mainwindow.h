@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QSqlQueryModel>
 
+#include <QSqlDatabase>
+
 #include "mainmodel.h"
 
 QT_BEGIN_NAMESPACE
@@ -38,6 +40,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    MainModel mm;
+    // MainModel mm;
+    QSqlDatabase db;
+
 };
 #endif // MAINWINDOW_H

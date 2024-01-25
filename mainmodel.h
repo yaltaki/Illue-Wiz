@@ -18,8 +18,6 @@ signals:
 
 private:
     QSqlDatabase db;
-
-    bool openDB();
 };
 
 #endif // MAINMODEL_H
