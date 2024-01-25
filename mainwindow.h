@@ -6,8 +6,6 @@
 
 #include <QSqlDatabase>
 
-#include "mainmodel.h"
-
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -37,6 +35,10 @@ private slots:
     // void on_moduleComboBox_1_currentIndexChanged(int index);
 
     // void on_calc_clicked();
+
+    void on_moduleComboBox_1_activated(int index);
+
+    void on_moduleComboBox_1_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;
