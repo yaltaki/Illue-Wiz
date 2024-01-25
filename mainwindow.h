@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "dbmanager.h"
+#include <QSqlQueryModel>
+
+#include "mainmodel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -20,7 +22,7 @@ public:
     ~MainWindow();
 
 private slots:
-    //void testFunction();
+    // void testFunction();
 
     void on_btn_steps_25_clicked();
 
@@ -30,16 +32,12 @@ private slots:
 
     void on_btn_steps_200_clicked();
 
-    //void on_tableWidget_cellChanged(int row, int column);
+    // void on_moduleComboBox_1_currentIndexChanged(int index);
 
-    void on_moduleComboBox_1_activated(int index);
-
-    void on_moduleComboBox_1_currentIndexChanged(int index);
-
-    void on_calc_clicked();
+    // void on_calc_clicked();
 
 private:
     Ui::MainWindow *ui;
-    DbManager dbm;
+    MainModel mm;
 };
 #endif // MAINWINDOW_H

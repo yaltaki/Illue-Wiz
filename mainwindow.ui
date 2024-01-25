@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1024</width>
-    <height>668</height>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -58,7 +58,7 @@
                    <string>Module:</string>
                   </property>
                   <property name="buddy">
-                   <cstring>moduleComboBox</cstring>
+                   <cstring>moduleComboBox_1</cstring>
                   </property>
                  </widget>
                 </item>
@@ -75,7 +75,7 @@
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N&lt;span style=&quot; vertical-align:sub;&quot;&gt;SER&lt;/span&gt;/N&lt;span style=&quot; vertical-align:sub;&quot;&gt;PAR&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="buddy">
-                   <cstring>n_seriesSpinBox</cstring>
+                   <cstring>n_seriesSpinBox_1</cstring>
                   </property>
                  </widget>
                 </item>
@@ -125,6 +125,9 @@
                  <widget class="QLabel" name="module_If_maxLabel_1">
                   <property name="text">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If&lt;span style=&quot; vertical-align:sub;&quot;&gt;MIN&lt;/span&gt;/If&lt;span style=&quot; vertical-align:sub;&quot;&gt;MAX&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>module_If_maxLineEdit_1</cstring>
                   </property>
                  </widget>
                 </item>
@@ -206,7 +209,7 @@
                          <string>Module:</string>
                         </property>
                         <property name="buddy">
-                         <cstring>moduleComboBox</cstring>
+                         <cstring>moduleComboBox_2</cstring>
                         </property>
                        </widget>
                       </item>
@@ -223,7 +226,7 @@
                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N&lt;span style=&quot; vertical-align:sub;&quot;&gt;SER&lt;/span&gt;/N&lt;span style=&quot; vertical-align:sub;&quot;&gt;PAR&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                         </property>
                         <property name="buddy">
-                         <cstring>n_seriesSpinBox</cstring>
+                         <cstring>n_seriesSpinBox_2</cstring>
                         </property>
                        </widget>
                       </item>
@@ -231,6 +234,9 @@
                        <widget class="QLabel" name="module_If_maxLabel_2">
                         <property name="text">
                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If&lt;span style=&quot; vertical-align:sub;&quot;&gt;MIN&lt;/span&gt;/If&lt;span style=&quot; vertical-align:sub;&quot;&gt;MAX&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                        <property name="buddy">
+                         <cstring>module_If_maxLineEdit_2</cstring>
                         </property>
                        </widget>
                       </item>
@@ -338,6 +344,9 @@
                   <property name="text">
                    <string>Driver:</string>
                   </property>
+                  <property name="buddy">
+                   <cstring>driverComboBox</cstring>
+                  </property>
                  </widget>
                 </item>
                 <item row="0" column="1">
@@ -351,6 +360,9 @@
                  <widget class="QLabel" name="driver_If_maxLabel">
                   <property name="text">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If&lt;span style=&quot; vertical-align:sub;&quot;&gt;MIN&lt;/span&gt;/If&lt;span style=&quot; vertical-align:sub;&quot;&gt;MAX&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>driver_If_maxLineEdit</cstring>
                   </property>
                  </widget>
                 </item>
@@ -372,6 +384,9 @@
                   <property name="text">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;V&lt;span style=&quot; vertical-align:sub;&quot;&gt;MIN&lt;/span&gt;/V&lt;span style=&quot; vertical-align:sub;&quot;&gt;MAX&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
+                  <property name="buddy">
+                   <cstring>driver_V_maxLineEdit</cstring>
+                  </property>
                  </widget>
                 </item>
                 <item row="2" column="1">
@@ -391,6 +406,9 @@
                  <widget class="QLabel" name="driver_P_maxLabel">
                   <property name="text">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;P&lt;span style=&quot; vertical-align:sub;&quot;&gt;MAX&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>driver_P_maxLineEdit</cstring>
                   </property>
                  </widget>
                 </item>
@@ -428,6 +446,9 @@
                   <property name="text">
                    <string>Optic:</string>
                   </property>
+                  <property name="buddy">
+                   <cstring>opticComboBox_3</cstring>
+                  </property>
                  </widget>
                 </item>
                 <item row="0" column="1">
@@ -441,6 +462,9 @@
                  <widget class="QLabel" name="lORLabel_3">
                   <property name="text">
                    <string>LOR:</string>
+                  </property>
+                  <property name="buddy">
+                   <cstring>LOR_DoubleSpinBox</cstring>
                   </property>
                  </widget>
                 </item>
@@ -535,13 +559,6 @@
                    </spacer>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="calc">
-                    <property name="text">
-                     <string>Calculate</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_5">
                     <item>
                      <layout class="QFormLayout" name="formLayout">
@@ -549,6 +566,9 @@
                        <widget class="QLabel" name="label_2">
                         <property name="text">
                          <string>Steps:</string>
+                        </property>
+                        <property name="buddy">
+                         <cstring>stepsSpinBox</cstring>
                         </property>
                        </widget>
                       </item>
@@ -658,27 +678,22 @@
                    </attribute>
                    <row>
                     <property name="text">
-                     <string>1</string>
+                     <string>200</string>
                     </property>
                    </row>
                    <row>
                     <property name="text">
-                     <string>2</string>
+                     <string>500</string>
                     </property>
                    </row>
                    <row>
                     <property name="text">
-                     <string>3</string>
+                     <string>700</string>
                     </property>
                    </row>
                    <row>
                     <property name="text">
-                     <string>4</string>
-                    </property>
-                   </row>
-                   <row>
-                    <property name="text">
-                     <string>5</string>
+                     <string>1050</string>
                     </property>
                    </row>
                    <column>
@@ -723,6 +738,102 @@ Flux</string>
 Efficacy</string>
                     </property>
                    </column>
+                   <item row="0" column="0">
+                    <property name="text">
+                     <string>3373 lm</string>
+                    </property>
+                   </item>
+                   <item row="0" column="1">
+                    <property name="text">
+                     <string>173.20 V</string>
+                    </property>
+                   </item>
+                   <item row="0" column="2">
+                    <property name="text">
+                     <string>34.55 W</string>
+                    </property>
+                   </item>
+                   <item row="0" column="3">
+                    <property name="text">
+                     <string>6746 lm</string>
+                    </property>
+                   </item>
+                   <item row="0" column="4">
+                    <property name="text">
+                     <string>42.33 W</string>
+                    </property>
+                   </item>
+                   <item row="0" column="5">
+                    <property name="text">
+                     <string>4958 lm</string>
+                    </property>
+                   </item>
+                   <item row="0" column="6">
+                    <property name="text">
+                     <string>117.13 lm/W</string>
+                    </property>
+                   </item>
+                   <item row="1" column="0">
+                    <property name="text">
+                     <string>3373 lm</string>
+                    </property>
+                   </item>
+                   <item row="1" column="1">
+                    <property name="text">
+                     <string>173.20 / 86.60 V</string>
+                    </property>
+                   </item>
+                   <item row="1" column="2">
+                    <property name="text">
+                     <string>34.55 / 17.28 W
+51.83 W</string>
+                    </property>
+                   </item>
+                   <item row="1" column="3">
+                    <property name="text">
+                     <string>6746 / 3373 lm
+10119 lm</string>
+                    </property>
+                   </item>
+                   <item row="1" column="4">
+                    <property name="text">
+                     <string>62.34 W</string>
+                    </property>
+                   </item>
+                   <item row="1" column="5">
+                    <property name="text">
+                     <string>7437 lm</string>
+                    </property>
+                   </item>
+                   <item row="1" column="6">
+                    <property name="text">
+                     <string>119.31 lm/W</string>
+                    </property>
+                   </item>
+                   <item row="2" column="0">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </item>
+                   <item row="2" column="1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </item>
+                   <item row="3" column="0">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="textAlignment">
+                     <set>AlignCenter</set>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                 </layout>
@@ -740,6 +851,9 @@ Efficacy</string>
                   <widget class="QLabel" name="label">
                    <property name="text">
                     <string>Driver Current:</string>
+                   </property>
+                   <property name="buddy">
+                    <cstring>horizontalSlider</cstring>
                    </property>
                   </widget>
                  </item>
@@ -832,6 +946,9 @@ Efficacy</string>
                         <property name="text">
                          <string>Module Current:</string>
                         </property>
+                        <property name="buddy">
+                         <cstring>moduleCurrentLineEdit</cstring>
+                        </property>
                        </widget>
                       </item>
                       <item row="0" column="1">
@@ -841,6 +958,9 @@ Efficacy</string>
                        <widget class="QLabel" name="moduleFluxLabel">
                         <property name="text">
                          <string>Module Flux:</string>
+                        </property>
+                        <property name="buddy">
+                         <cstring>moduleFluxLineEdit</cstring>
                         </property>
                        </widget>
                       </item>
@@ -852,6 +972,9 @@ Efficacy</string>
                         <property name="text">
                          <string>Module Voltage:</string>
                         </property>
+                        <property name="buddy">
+                         <cstring>moduleVoltageLineEdit</cstring>
+                        </property>
                        </widget>
                       </item>
                       <item row="2" column="1">
@@ -861,6 +984,9 @@ Efficacy</string>
                        <widget class="QLabel" name="modulePowerLabel">
                         <property name="text">
                          <string>Module Power:</string>
+                        </property>
+                        <property name="buddy">
+                         <cstring>modulePowerLineEdit</cstring>
                         </property>
                        </widget>
                       </item>
@@ -888,6 +1014,9 @@ Efficacy</string>
                         <property name="text">
                          <string>Channel Layout:</string>
                         </property>
+                        <property name="buddy">
+                         <cstring>channelLayoutLineEdit</cstring>
+                        </property>
                        </widget>
                       </item>
                       <item row="0" column="1">
@@ -897,6 +1026,9 @@ Efficacy</string>
                        <widget class="QLabel" name="numberOfModulesLabel">
                         <property name="text">
                          <string>Number of Modules:</string>
+                        </property>
+                        <property name="buddy">
+                         <cstring>numberOfModulesLineEdit</cstring>
                         </property>
                        </widget>
                       </item>
@@ -908,6 +1040,9 @@ Efficacy</string>
                         <property name="text">
                          <string>Channel Flux:</string>
                         </property>
+                        <property name="buddy">
+                         <cstring>channelFluxLineEdit</cstring>
+                        </property>
                        </widget>
                       </item>
                       <item row="2" column="1">
@@ -918,6 +1053,9 @@ Efficacy</string>
                         <property name="text">
                          <string>Channel Voltage:</string>
                         </property>
+                        <property name="buddy">
+                         <cstring>channelVoltageLineEdit</cstring>
+                        </property>
                        </widget>
                       </item>
                       <item row="3" column="1">
@@ -927,6 +1065,9 @@ Efficacy</string>
                        <widget class="QLabel" name="channelPowerLabel">
                         <property name="text">
                          <string>Channel Power:</string>
+                        </property>
+                        <property name="buddy">
+                         <cstring>channelPowerLineEdit</cstring>
                         </property>
                        </widget>
                       </item>
@@ -958,6 +1099,9 @@ Efficacy</string>
                         <property name="text">
                          <string>Output Power:</string>
                         </property>
+                        <property name="buddy">
+                         <cstring>nominalPowerLineEdit</cstring>
+                        </property>
                        </widget>
                       </item>
                       <item row="0" column="1">
@@ -967,6 +1111,9 @@ Efficacy</string>
                        <widget class="QLabel" name="efficiencyLabel">
                         <property name="text">
                          <string>Efficiency:</string>
+                        </property>
+                        <property name="buddy">
+                         <cstring>efficiencyLineEdit</cstring>
                         </property>
                        </widget>
                       </item>
@@ -978,6 +1125,9 @@ Efficacy</string>
                         <property name="text">
                          <string>Power Factor:</string>
                         </property>
+                        <property name="buddy">
+                         <cstring>powerFactorLineEdit</cstring>
+                        </property>
                        </widget>
                       </item>
                       <item row="2" column="1">
@@ -987,6 +1137,9 @@ Efficacy</string>
                        <widget class="QLabel" name="inputPowerLabel">
                         <property name="text">
                          <string>Input Power:</string>
+                        </property>
+                        <property name="buddy">
+                         <cstring>inputPowerLineEdit</cstring>
                         </property>
                        </widget>
                       </item>
@@ -1014,6 +1167,9 @@ Efficacy</string>
                         <property name="text">
                          <string>Nominal Flux:</string>
                         </property>
+                        <property name="buddy">
+                         <cstring>nominalFluxLineEdit</cstring>
+                        </property>
                        </widget>
                       </item>
                       <item row="0" column="1">
@@ -1023,6 +1179,9 @@ Efficacy</string>
                        <widget class="QLabel" name="effectiveFluxLabel">
                         <property name="text">
                          <string>Effective Flux:</string>
+                        </property>
+                        <property name="buddy">
+                         <cstring>effectiveFluxLineEdit</cstring>
                         </property>
                        </widget>
                       </item>
@@ -1034,6 +1193,9 @@ Efficacy</string>
                         <property name="text">
                          <string>Rated Power:</string>
                         </property>
+                        <property name="buddy">
+                         <cstring>ratedPowerLineEdit</cstring>
+                        </property>
                        </widget>
                       </item>
                       <item row="2" column="1">
@@ -1043,6 +1205,9 @@ Efficacy</string>
                        <widget class="QLabel" name="overallEfficacyLabel">
                         <property name="text">
                          <string>Overall Efficacy:</string>
+                        </property>
+                        <property name="buddy">
+                         <cstring>overallEfficacyLineEdit</cstring>
                         </property>
                        </widget>
                       </item>
@@ -1089,6 +1254,50 @@ Efficacy</string>
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>moduleComboBox_1</tabstop>
+  <tabstop>n_seriesSpinBox_1</tabstop>
+  <tabstop>n_parallelSpinBox_1</tabstop>
+  <tabstop>moduleGroupBox_2</tabstop>
+  <tabstop>checkBox_Copy</tabstop>
+  <tabstop>moduleComboBox_2</tabstop>
+  <tabstop>n_seriesSpinBox_2</tabstop>
+  <tabstop>n_parallelSpinBox_2</tabstop>
+  <tabstop>driverComboBox</tabstop>
+  <tabstop>opticComboBox_3</tabstop>
+  <tabstop>LOR_DoubleSpinBox</tabstop>
+  <tabstop>stepsSpinBox</tabstop>
+  <tabstop>btn_steps_25</tabstop>
+  <tabstop>btn_steps_50</tabstop>
+  <tabstop>btn_steps_100</tabstop>
+  <tabstop>btn_steps_200</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>horizontalSlider</tabstop>
+  <tabstop>spinBox</tabstop>
+  <tabstop>driver_P_maxLineEdit</tabstop>
+  <tabstop>module_If_maxLineEdit_2</tabstop>
+  <tabstop>module_If_maxLineEdit_1</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>driver_If_maxLineEdit</tabstop>
+  <tabstop>driver_V_maxLineEdit</tabstop>
+  <tabstop>moduleCurrentLineEdit</tabstop>
+  <tabstop>moduleFluxLineEdit</tabstop>
+  <tabstop>moduleVoltageLineEdit</tabstop>
+  <tabstop>modulePowerLineEdit</tabstop>
+  <tabstop>channelLayoutLineEdit</tabstop>
+  <tabstop>numberOfModulesLineEdit</tabstop>
+  <tabstop>channelFluxLineEdit</tabstop>
+  <tabstop>channelVoltageLineEdit</tabstop>
+  <tabstop>channelPowerLineEdit</tabstop>
+  <tabstop>nominalPowerLineEdit</tabstop>
+  <tabstop>efficiencyLineEdit</tabstop>
+  <tabstop>powerFactorLineEdit</tabstop>
+  <tabstop>inputPowerLineEdit</tabstop>
+  <tabstop>nominalFluxLineEdit</tabstop>
+  <tabstop>effectiveFluxLineEdit</tabstop>
+  <tabstop>ratedPowerLineEdit</tabstop>
+  <tabstop>overallEfficacyLineEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

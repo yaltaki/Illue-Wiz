@@ -74,5 +74,6 @@ CMakeLists.txt.user*
 
 # My stuff
 # --
+.old/
 *.db
 reference-files/
