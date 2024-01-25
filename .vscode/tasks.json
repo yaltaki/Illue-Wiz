@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "db link",
+      "type": "shell",
+      "command": "[ -a main.db ] || ln ../Illue-Wiz/main.db ./main.db",
+      "options": {
+        "cwd": "${workspaceFolder}/../debug-build/"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "qmake",
+      "type": "shell",
+      "command": "${userHome}/Qt/6.6.1/gcc_64/bin/qmake ../Illue-Wiz/illue-wiz.pro",
+      "options": {
+        "cwd": "${workspaceFolder}/../debug-build/"
+      },
+      "problemMatcher": [],
+      "dependsOn": "db link"
+    },
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "make",
+      "options": {
+        "cwd": "${workspaceFolder}/../debug-build/"
+      },
+      "problemMatcher": [],
+      "dependsOn": "qmake",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
