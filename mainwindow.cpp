@@ -36,7 +36,6 @@ MainWindow::MainWindow(QWidget *parent)
     module_model_3->setHeaderData(1, Qt::Horizontal, tr("Name"));
     this->ui->driverComboBox->setModel(module_model_3);
     this->ui->driverComboBox->setModelColumn(1);
-
 }
 
 MainWindow::~MainWindow()
@@ -44,25 +43,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_btn_steps_25_clicked()
-{
-    ui->stepsSpinBox->setValue(25);
-}
-
-void MainWindow::on_btn_steps_50_clicked()
-{
-    ui->stepsSpinBox->setValue(50);
-}
-
-void MainWindow::on_btn_steps_100_clicked()
-{
-    ui->stepsSpinBox->setValue(100);
-}
-
-void MainWindow::on_btn_steps_200_clicked()
-{
-    ui->stepsSpinBox->setValue(200);
-}
+void MainWindow::on_btn_steps_25_clicked() { ui->stepsSpinBox->setValue(25); }
+void MainWindow::on_btn_steps_50_clicked() { ui->stepsSpinBox->setValue(50); }
+void MainWindow::on_btn_steps_100_clicked() { ui->stepsSpinBox->setValue(100); }
+void MainWindow::on_btn_steps_200_clicked() { ui->stepsSpinBox->setValue(200); }
 
 // void MainWindow::on_moduleComboBox_1_currentIndexChanged(int index)
 // {
@@ -89,9 +73,8 @@ void MainWindow::on_moduleComboBox_1_currentIndexChanged(int index)
     If_MinMax->setHeaderData(1, Qt::Horizontal, tr("If_min"));
     If_MinMax->setHeaderData(2, Qt::Horizontal, tr("If_max"));
     QString concac = "";
-    concac = If_MinMax->data(If_MinMax->index(index-1, 1)).toString();
+    concac = If_MinMax->data(If_MinMax->index(index - 1, 1)).toString();
     concac += " / ";
-    concac += If_MinMax->data(If_MinMax->index(index-1, 2)).toString();
+    concac += If_MinMax->data(If_MinMax->index(index - 1, 2)).toString();
     this->ui->module_If_maxLineEdit_1->setText(concac);
 }
-

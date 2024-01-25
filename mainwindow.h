@@ -22,14 +22,10 @@ public:
     ~MainWindow();
 
 private slots:
-    // void testFunction();
-
+    // steps selector
     void on_btn_steps_25_clicked();
-
     void on_btn_steps_50_clicked();
-
     void on_btn_steps_100_clicked();
-
     void on_btn_steps_200_clicked();
 
     // void on_moduleComboBox_1_currentIndexChanged(int index);
@@ -44,6 +40,5 @@ private:
     Ui::MainWindow *ui;
     // MainModel mm;
     QSqlDatabase db;
-
 };
 #endif // MAINWINDOW_H
