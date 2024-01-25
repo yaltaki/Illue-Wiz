@@ -535,6 +535,13 @@
                    </spacer>
                   </item>
                   <item>
+                   <widget class="QPushButton" name="calc">
+                    <property name="text">
+                     <string>Calculate</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_5">
                     <item>
                      <layout class="QFormLayout" name="formLayout">
@@ -651,22 +658,27 @@
                    </attribute>
                    <row>
                     <property name="text">
-                     <string>200</string>
+                     <string>1</string>
                     </property>
                    </row>
                    <row>
                     <property name="text">
-                     <string>500</string>
+                     <string>2</string>
                     </property>
                    </row>
                    <row>
                     <property name="text">
-                     <string>700</string>
+                     <string>3</string>
                     </property>
                    </row>
                    <row>
                     <property name="text">
-                     <string>1050</string>
+                     <string>4</string>
+                    </property>
+                   </row>
+                   <row>
+                    <property name="text">
+                     <string>5</string>
                     </property>
                    </row>
                    <column>
@@ -674,26 +686,17 @@
                      <string>Module
 Flux</string>
                     </property>
-                    <property name="textAlignment">
-                     <set>AlignCenter</set>
-                    </property>
                    </column>
                    <column>
                     <property name="text">
                      <string>String
 Voltage</string>
                     </property>
-                    <property name="textAlignment">
-                     <set>AlignCenter</set>
-                    </property>
                    </column>
                    <column>
                     <property name="text">
                      <string>Nominal
 Power</string>
-                    </property>
-                    <property name="textAlignment">
-                     <set>AlignCenter</set>
                     </property>
                    </column>
                    <column>
@@ -701,26 +704,17 @@ Power</string>
                      <string>Nominal
 Flux</string>
                     </property>
-                    <property name="textAlignment">
-                     <set>AlignCenter</set>
-                    </property>
                    </column>
                    <column>
                     <property name="text">
                      <string>Effective
 Power</string>
                     </property>
-                    <property name="textAlignment">
-                     <set>AlignCenter</set>
-                    </property>
                    </column>
                    <column>
                     <property name="text">
                      <string>Effective
 Flux</string>
-                    </property>
-                    <property name="textAlignment">
-                     <set>AlignCenter</set>
                     </property>
                    </column>
                    <column>
@@ -728,106 +722,7 @@ Flux</string>
                      <string>System
 Efficacy</string>
                     </property>
-                    <property name="textAlignment">
-                     <set>AlignCenter</set>
-                    </property>
                    </column>
-                   <item row="0" column="0">
-                    <property name="text">
-                     <string>3373 lm</string>
-                    </property>
-                   </item>
-                   <item row="0" column="1">
-                    <property name="text">
-                     <string>173.20 V</string>
-                    </property>
-                   </item>
-                   <item row="0" column="2">
-                    <property name="text">
-                     <string>34.55 W</string>
-                    </property>
-                   </item>
-                   <item row="0" column="3">
-                    <property name="text">
-                     <string>6746 lm</string>
-                    </property>
-                   </item>
-                   <item row="0" column="4">
-                    <property name="text">
-                     <string>42.33 W</string>
-                    </property>
-                   </item>
-                   <item row="0" column="5">
-                    <property name="text">
-                     <string>4958 lm</string>
-                    </property>
-                   </item>
-                   <item row="0" column="6">
-                    <property name="text">
-                     <string>117.13 lm/W</string>
-                    </property>
-                   </item>
-                   <item row="1" column="0">
-                    <property name="text">
-                     <string>3373 lm</string>
-                    </property>
-                   </item>
-                   <item row="1" column="1">
-                    <property name="text">
-                     <string>173.20 / 86.60 V</string>
-                    </property>
-                   </item>
-                   <item row="1" column="2">
-                    <property name="text">
-                     <string>34.55 / 17.28 W
-51.83 W</string>
-                    </property>
-                   </item>
-                   <item row="1" column="3">
-                    <property name="text">
-                     <string>6746 / 3373 lm
-10119 lm</string>
-                    </property>
-                   </item>
-                   <item row="1" column="4">
-                    <property name="text">
-                     <string>62.34 W</string>
-                    </property>
-                   </item>
-                   <item row="1" column="5">
-                    <property name="text">
-                     <string>7437 lm</string>
-                    </property>
-                   </item>
-                   <item row="1" column="6">
-                    <property name="text">
-                     <string>119.31 lm/W</string>
-                    </property>
-                   </item>
-                   <item row="2" column="0">
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="textAlignment">
-                     <set>AlignCenter</set>
-                    </property>
-                   </item>
-                   <item row="2" column="1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="textAlignment">
-                     <set>AlignCenter</set>
-                    </property>
-                   </item>
-                   <item row="3" column="0">
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="textAlignment">
-                     <set>AlignCenter</set>
-                    </property>
-                   </item>
                   </widget>
                  </item>
                 </layout>
@@ -1180,7 +1075,7 @@ Efficacy</string>
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
