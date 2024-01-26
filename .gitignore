@@ -77,3 +77,4 @@ CMakeLists.txt.user*
 .old/
 *.db
 reference-files/
+wip-ideas/
