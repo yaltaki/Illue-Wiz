@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include <QSqlQueryModel>
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlIndex>
+#include <QAbstractItemModel>
 #include <QPushButton>
 #include <QSqlDatabase>
 

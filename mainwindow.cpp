@@ -50,16 +50,26 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_moduleComboBox_1_currentIndexChanged(int index)
 {
-    QSqlQueryModel *If_MinMax = new QSqlQueryModel;
-    If_MinMax->setQuery("SELECT id, If_min, If_max FROM module ORDER BY id");
-    If_MinMax->setHeaderData(0, Qt::Horizontal, tr("id"));
-    If_MinMax->setHeaderData(1, Qt::Horizontal, tr("If_min"));
-    If_MinMax->setHeaderData(2, Qt::Horizontal, tr("If_max"));
-    QString concac = "";
-    concac = If_MinMax->data(If_MinMax->index(index, 1)).toString();
-    concac += " / ";
-    concac += If_MinMax->data(If_MinMax->index(index, 2)).toString();
-    this->ui->module_If_maxLineEdit_1->setText(concac);
+    QAbstractItemModel* model = this->ui->moduleComboBox_1->model();
+    QModelIndex module_index = model->index(index, 0);
+    int module_id = model->data(module_index).toInt();
+
+    QSqlQuery *query = new QSqlQuery;
+
+    query->prepare("SELECT If_min, If_max FROM module WHERE id = (:module_id)");
+    query->bindValue(":module_id", module_id);
+    query->exec();
+    query->first();
+
+    QSqlRecord rec = query->record();
+    int min_i = rec.indexOf("If_min");
+    int max_i = rec.indexOf("If_max");
+    //qDebug() << query->value(min_i).toInt() << query->value(max_i).toInt();
+    QString concat = query->value(min_i).toString() + " / " + query->value(max_i).toString();
+
+    //pcode LED_Module module1 = LED_Module(query->value(indexOf("id")).toInt(), query->value(indexOf("Name")).toString, ...);
+    // int MinCurrent = module1.getMinCurrent();
+    this->ui->module_If_maxLineEdit_1->setText(concat);
 }
 
 void MainWindow::onStepChange(int val)
