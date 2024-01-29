@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "core/LED_components/led_module.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -14,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     else
     {
         qDebug() << "Error: connection with database failed";
-    }
+    }    
 
     QSqlQueryModel *module_model_1 = new QSqlQueryModel;
     module_model_1->setQuery("SELECT id, name FROM module ORDER BY id");
@@ -42,6 +43,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btn_steps_100,&QPushButton::clicked, this, [this]{ onStepChange(100); });
     connect(ui->btn_steps_200,&QPushButton::clicked, this, [this]{ onStepChange(200); });
 }
+
+LED_Module *ModuA = new LED_Module;
+LED_Module *ModuB = new LED_Module;
 
 MainWindow::~MainWindow()
 {
@@ -113,5 +117,17 @@ void MainWindow::on_driverComboBox_currentIndexChanged(int index)
     this->ui->driver_If_maxLineEdit->setText(concac1);
     this->ui->driver_V_maxLineEdit->setText(concac2);
     this->ui->driver_P_maxLineEdit->setText(concac3);
+
+    ModuA->Update(index, this);
+    ModuA->PrintMake();
+
+    if(this->ui->moduleGroupBox_2->isChecked())
+    {
+        ModuA->Copy(ModuB);
+        ModuB->PrintMake();
+        ModuB->PrintIf();
+    }
+
+
 }
 

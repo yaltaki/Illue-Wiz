@@ -22,6 +22,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    Ui::MainWindow *ui;
     MainWindow(QWidget *parent = nullptr);
     void onStepChange(int val);
     ~MainWindow();
@@ -32,8 +33,8 @@ private slots:
     void on_driverComboBox_currentIndexChanged(int index);
 
 private:
-    Ui::MainWindow *ui;
     // MainModel mm;
     QSqlDatabase db;
+    // LED_Luminaire luminaire;
 };
 #endif // MAINWINDOW_H
