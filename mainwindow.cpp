@@ -85,14 +85,13 @@ void MainWindow::on_moduleComboBox_1_currentIndexChanged(int index)
     V_I[1] = query->value(rec.indexOf("c_V_I_2")).toDouble();
     V_I[2] = query->value(rec.indexOf("c_V_I_3")).toDouble();
 
-    delete this->module_1;
+    //delete this->module_1;
     this->module_1 = new LED_Module(
-        name,code,manu,
-        If,LF_I,V_I
-    );
+        name, code, manu,
+        If, LF_I, V_I);
 
-    QString concat = this->module_1->get_current_limits();
-    this->ui->module_If_maxLineEdit_1->setText(concat);
+    this->ui->module_If_maxLineEdit_1->setText(this->module_1->get_current_limits());
+    this->ui->module_V_maxLineEdit_1->setText(this->module_1->get_voltage_limits());
 }
 
 void MainWindow::onStepChange(int val)
@@ -100,62 +99,62 @@ void MainWindow::onStepChange(int val)
     this->ui->stepsSpinBox->setValue(val);
 }
 
-void MainWindow::on_driverComboBox_currentIndexChanged(int index)
-{
-    QAbstractItemModel *model = this->ui->driverComboBox->model();
-    QModelIndex driver_index = model->index(index, 0);
-    int driver_id = model->data(driver_index).toInt();
+// void MainWindow::on_driverComboBox_currentIndexChanged(int index)
+// {
+//     QAbstractItemModel *model = this->ui->driverComboBox->model();
+//     QModelIndex driver_index = model->index(index, 0);
+//     int driver_id = model->data(driver_index).toInt();
 
-    QSqlQuery *query = new QSqlQuery;
+//     QSqlQuery *query = new QSqlQuery;
 
-    query->prepare("SELECT * FROM driver WHERE id=(:driver_id)");
-    query->bindValue(":driver_id", driver_id);
-    query->exec();
-    query->first();
+//     query->prepare("SELECT * FROM driver WHERE id=(:driver_id)");
+//     query->bindValue(":driver_id", driver_id);
+//     query->exec();
+//     query->first();
 
-    QSqlRecord rec = query->record();
-    QString name = query->value(rec.indexOf("name")).toString();
-    QString code = query->value(rec.indexOf("code")).toString();
-    QString manu = query->value(rec.indexOf("manufacturer")).toString();
+//     QSqlRecord rec = query->record();
+//     QString name = query->value(rec.indexOf("name")).toString();
+//     QString code = query->value(rec.indexOf("code")).toString();
+//     QString manu = query->value(rec.indexOf("manufacturer")).toString();
 
-    // Vf
-    unsigned Vf[2];
-    Vf[0] = query->value(rec.indexOf("V_min")).toUInt();
-    Vf[1] = query->value(rec.indexOf("V_max")).toUInt();
+//     // Vf
+//     unsigned Vf[2];
+//     Vf[0] = query->value(rec.indexOf("V_min")).toUInt();
+//     Vf[1] = query->value(rec.indexOf("V_max")).toUInt();
 
-    // If
-    unsigned If[3];
-    If[0] = query->value(rec.indexOf("If_min")).toUInt();
-    If[1] = query->value(rec.indexOf("If_default")).toUInt();
-    If[2] = query->value(rec.indexOf("If_max")).toUInt();
+//     // If
+//     unsigned If[3];
+//     If[0] = query->value(rec.indexOf("If_min")).toUInt();
+//     If[1] = query->value(rec.indexOf("If_default")).toUInt();
+//     If[2] = query->value(rec.indexOf("If_max")).toUInt();
 
-    // P_out
-    unsigned P_out[2];
-    P_out[0] = query->value(rec.indexOf("P_1_max")).toUInt();
-    P_out[1] = query->value(rec.indexOf("P_2_max")).toUInt();
+//     // P_out
+//     unsigned P_out[2];
+//     P_out[0] = query->value(rec.indexOf("P_1_max")).toUInt();
+//     P_out[1] = query->value(rec.indexOf("P_2_max")).toUInt();
 
-    bool bDualChannel = query->value(rec.indexOf("isDualChannel")).toBool();
+//     bool bDualChannel = query->value(rec.indexOf("isDualChannel")).toBool();
 
-    // C_N
-    double C_N[3];
-    C_N[0] = query->value(rec.indexOf("c_n_1")).toDouble();
-    C_N[1] = query->value(rec.indexOf("c_n_2")).toDouble();
-    C_N[2] = query->value(rec.indexOf("c_n_3")).toDouble();
+//     // C_N
+//     double C_N[3];
+//     C_N[0] = query->value(rec.indexOf("c_n_1")).toDouble();
+//     C_N[1] = query->value(rec.indexOf("c_n_2")).toDouble();
+//     C_N[2] = query->value(rec.indexOf("c_n_3")).toDouble();
 
-    // C_PF
-    double C_PF[3];
-    C_PF[0] = query->value(rec.indexOf("c_pf_1")).toDouble();
-    C_PF[1] = query->value(rec.indexOf("c_pf_2")).toDouble();
-    C_PF[2] = query->value(rec.indexOf("c_pf_3")).toDouble();
+//     // C_PF
+//     double C_PF[3];
+//     C_PF[0] = query->value(rec.indexOf("c_pf_1")).toDouble();
+//     C_PF[1] = query->value(rec.indexOf("c_pf_2")).toDouble();
+//     C_PF[2] = query->value(rec.indexOf("c_pf_3")).toDouble();
 
-    delete this->driver;
-    this->driver = new LED_Driver(
-        name,code,manu,
-        Vf,If,P_out,
-        bDualChannel, C_N, C_PF
-    );
+//     delete this->driver;
+//     this->driver = new LED_Driver(
+//         name,code,manu,
+//         Vf,If,P_out,
+//         bDualChannel, C_N, C_PF
+//     );
 
-    this->ui->driver_If_maxLineEdit->setText(this->driver->get_current_limits());
-    this->ui->driver_V_maxLineEdit->setText(this->driver->get_voltage_limits());
-    this->ui->driver_P_maxLineEdit->setText(this->driver->get_power_limits());
-}
+//     this->ui->driver_If_maxLineEdit->setText(this->driver->get_current_limits());
+//     this->ui->driver_V_maxLineEdit->setText(this->driver->get_voltage_limits());
+//     this->ui->driver_P_maxLineEdit->setText(this->driver->get_power_limits());
+// }

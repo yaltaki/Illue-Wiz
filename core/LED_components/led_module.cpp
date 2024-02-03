@@ -1,82 +1,122 @@
+#include <QDebug>
+
 #include "led_module.h"
-#include "mainwindow.cpp"
-#include "ui_mainwindow.h"
 
-LED_Module::LED_Module()
+LED_Module::LED_Module( // 6 args constructor
+    QString &name,
+    QString &code,
+    QString &manufacturer,
+    unsigned int If[3],
+    double LF_I[3],
+    double V_I[3]) : name{name}, code{code}, manufacturer{manufacturer},
+                     If{If[0], If[1], If[2]},
+                     LF_I{LF_I[0], LF_I[1], LF_I[2]},
+                     V_I{V_I[0], V_I[1], V_I[2]}
 {
-    /*QSqlQuery *numList = new QSqlQuery;
-    numList->prepare("SELECT COUNT(id) FROM module");
-    numList->exec();
-    int numOfClasses = numList->value(0).toInt();
-    LED_Module *Modu_s[numOfClasses];
-    for(int i = 0; i < numOfClasses; i++)
-    {
-        Modu_s[i] = new LED_Module();
-    }*/
+    qDebug() << "LED Module " << this->name << " initialised.";
+    qDebug() << "If: \t" << If[0] << ", " << If[1] << ", " << If[2] << " mA";
+    qDebug() << "LF_I: \t" << LF_I[0] << ", " << LF_I[1] << ", " << LF_I[2];
+    qDebug() << "V_I: \t" << V_I[0] << ", " << V_I[1] << ", " << V_I[2];
 }
 
-void LED_Module::Update(int index, MainWindow* Uip)
+// LED_Module::LED_Module(const LED_Module &source) // Copy Constructor
+// {
+//     this->name = source.name;
+//     this->code = source.code;
+//     this->manufacturer = source.manufacturer;
+//     this->If[0] = source.If[0];
+//     this->If[1] = source.If[1];
+//     this->If[2] = source.If[2];
+//     this->LF_I[0] = source.LF_I[0];
+//     this->LF_I[1] = source.LF_I[1];
+//     this->LF_I[2] = source.LF_I[2];
+//     this->V_I[0] = source.V_I[0];
+//     this->V_I[1] = source.V_I[1];
+//     this->V_I[2] = source.V_I[2];
+// }
+
+// LED_Module::LED_Module(LED_Module &&source) // Move Constructor
+// {
+//     this->name = std::move(source.name);
+//     this->code = std::move(source.code);
+//     this->manufacturer = std::move(source.manufacturer);
+//     this->If[0] = std::move(source.If[0]);
+//     this->If[1] = std::move(source.If[1]);
+//     this->If[2] = std::move(source.If[2]);
+//     this->LF_I[0] = std::move(source.LF_I[0]);
+//     this->LF_I[1] = std::move(source.LF_I[1]);
+//     this->LF_I[2] = std::move(source.LF_I[2]);
+//     this->V_I[0] = std::move(source.V_I[0]);
+//     this->V_I[1] = std::move(source.V_I[1]);
+//     this->V_I[2] = std::move(source.V_I[2]);
+// }
+
+// Getters
+QString LED_Module::get_name() const
 {
-    QAbstractItemModel* model = Uip->ui->moduleComboBox_1->model();
-    QModelIndex module_index = model->index(index, 0);
-    int module_id = model->data(module_index).toInt();
+    return this->name;
+}
+QString LED_Module::get_code() const { return this->code; }
+QString LED_Module::get_manufacturer() const { return this->manufacturer; }
 
-    QSqlQuery *query = new QSqlQuery;
-    query->prepare("SELECT * FROM module WHERE id = (:module_id)");
-    query->bindValue(":module_id", module_id);
-    query->exec();
-    query->first();
+unsigned LED_Module::get_If_min() const { return this->If[0]; }
+unsigned LED_Module::get_If_rated() const { return this->If[1]; }
+unsigned LED_Module::get_If_max() const { return this->If[2]; }
 
-    this->Manufacturer = query->value("manufacturer").toString();
-    this->If[0] = query->value("If_min").toInt();
-    this->If[1] = query->value("If_rated").toInt();
-    this->If[2] = query->value("If_max").toInt();
-    this->C_LF[0] = query->value("c_LF_I_1").toFloat();
-    this->C_LF[1] = query->value("c_LF_I_2").toFloat();
-    this->C_LF[2] = query->value("c_LF_I_3").toFloat();
-    this->C_VI[0] = query->value("c_V_I_1").toFloat();
-    this->C_VI[1] = query->value("c_V_I_2").toFloat();
-    this->C_VI[2] = query->value("c_V_I_3").toFloat();
+double LED_Module::get_V_max() const
+{
+    return this->calc_voltage(this->get_If_max());
+}
+double LED_Module::get_V_min() const
+{
+    return this->calc_voltage(this->get_If_min());
 }
 
-void LED_Module::Copy(LED_Module* CopyTo)
+QString LED_Module::get_current_limits() const
 {
-    CopyTo->Manufacturer = this->Manufacturer;
-    CopyTo->If[0] = this->If[0];
-    CopyTo->If[1] = this->If[1];
-    CopyTo->If[2] = this->If[2];
-    CopyTo->C_LF[0] = this->C_LF[0];
-    CopyTo->C_LF[1] = this->C_LF[1];
-    CopyTo->C_LF[2] = this->C_LF[2];
-    CopyTo->C_VI[0] = this->C_VI[0];
-    CopyTo->C_VI[1] = this->C_VI[1];
-    CopyTo->C_VI[2] = this->C_VI[2];
+    QString output;
+    output = QString::number(this->get_If_min());
+    output += " / ";
+    output += QString::number(this->get_If_max());
+    return output;
 }
 
-void LED_Module::PrintMake()
+QString LED_Module::get_voltage_limits() const
 {
-    qDebug() << "Manufacturer: " << this->Manufacturer;
+    QString output;
+    output = QString::number(this->get_V_min(), 'f', 1);
+    output += " / ";
+    output += QString::number(this->get_V_max(), 'f', 1);
+    return output;
 }
 
-void LED_Module::PrintIf()
+double LED_Module::calc_flux(unsigned const &current) const
 {
-    qDebug() << "Forward Currents: " << this->If[0] << " / " <<
-        this->If[1] << " / " << this->If[2];
-}
+    double _1 = this->LF_I[0] * current * current;
+    double _2 = this->LF_I[1] * current;
+    double _3 = this->LF_I[2];
 
-void LED_Module::PrintCLF()
-{
-    qDebug() << "Forward Luminal Flux: " << this->C_LF[0] << " / " <<
-        this->C_LF[1] << " / " << this->C_LF[2];
+    return _1 + _2 + _3;
 }
-
-void LED_Module::PrintCVI()
+double LED_Module::calc_voltage(unsigned const &current) const
 {
-    qDebug() << "Forward Voltages: " << this->C_VI[0] << " / " <<
-        this->C_VI[1] << " / " << this->C_VI[2];
+    double _1 = this->V_I[0] * current * current;
+    double _2 = this->V_I[1] * current;
+    double _3 = this->V_I[2];
+
+    return _1 + _2 + _3;
 }
-
-LED_Module::~LED_Module()
+double LED_Module::calc_power(unsigned const &current) const
 {
-    // Decons
+    return this->calc_voltage(current) * current / 1000;
+}
+double LED_Module::calc_efficiency(unsigned const &current) const
+{
+    double flux = this->calc_flux(current);
+    double power = this->calc_power(current);
+
+    if (not power)
+        return 0;
+
+    return flux / power;
 }
