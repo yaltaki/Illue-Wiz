@@ -19,7 +19,7 @@ public:
         QString &name,
         QString &code,
         QString &manufacturer,
-        unsigned If[3],
+        unsigned int If[3],
         double LF_I[3],
         double V_I[3]);
     LED_Module(const LED_Module &source); // Copy Constructor &module1 = module2
