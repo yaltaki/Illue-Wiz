@@ -10,6 +10,8 @@
 #include <QPushButton>
 #include <QSqlDatabase>
 
+#include "core/LED_components/led_module.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -33,8 +35,8 @@ private slots:
     void on_driverComboBox_currentIndexChanged(int index);
 
 private:
-    // MainModel mm;
     QSqlDatabase db;
     // LED_Luminaire luminaire;
+    LED_Module *module_1;
 };
 #endif // MAINWINDOW_H

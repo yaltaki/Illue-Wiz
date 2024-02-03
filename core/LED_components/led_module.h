@@ -1,42 +1,49 @@
 #ifndef LED_MODULE_H
 #define LED_MODULE_H
 
-#include <QMainWindow>
-#include <QSqlQueryModel>
-#include <QSqlQuery>
-#include <QSqlRecord>
-#include <QSqlIndex>
-#include <QAbstractItemModel>
-#include <QPushButton>
-#include <QSqlDatabase>
 #include <QString>
-#include "mainwindow.h"
 
 class LED_Module
 {
+private:
+    const QString &name;
+    const QString &code;
+    const QString &manufacturer;
+    const unsigned int If[3];
+    const double LF_I[3];
+    const double V_I[3];
+
 public:
-    LED_Module();
+    // Constructors
+    LED_Module(                          // 6 arg Constructor
+        QString &name,
+        QString &code,
+        QString &manufacturer,
+        unsigned If[3],
+        double LF_I[3],
+        double V_I[3]);
+    LED_Module(const LED_Module &source); // Copy Constructor &module1 = module2
+    LED_Module(LED_Module &&source);      // Move Constructor LedModule module_1 = new LedModule()
+    ~LED_Module();                       // Destructor
 
-    QString Manufacturer;
-    int If[3];
-    float C_LF[3];
-    float C_VI[3];
+    // ========================================================================
+    // Getters
+    QString get_name() const;
+    QString get_code() const;
+    QString get_manufacturer() const;
+    unsigned short get_If_min() const;
+    unsigned short get_If_rated() const;
+    unsigned short get_If_max() const;
+    double get_V_min() const; // return calc_voltage(If[0])
+    double get_V_max() const; // return calc_voltage(If[2])
 
-    void Update(int index, MainWindow* Uip);
-    void Copy(LED_Module* CopyTo);
-    void PrintMake();
-    void PrintIf();
-    void PrintCLF();
-    void PrintCVI();
-    float CalcLF(int index);
-    float CalcVI(int index);
-    float CalcPower(int index);
+    // Display methods
+    QString get_current_limits() const;
 
-    ~LED_Module();
+    // Methods in LedModule
+    double calc_flux(unsigned const &current) const; // unit: Lumen (lm)
+    double calc_voltage(unsigned const &current) const;
+    double calc_power(unsigned const &current) const;
+    double calc_efficiency(unsigned const &current) const; // unit: Lumen/Watt (lm/W)
 };
-
 #endif // LED_MODULE_H
-
-// If
-// LF_I
-// V_I
