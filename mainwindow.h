@@ -39,5 +39,6 @@ private:
     QSqlDatabase db;
     // LED_Luminaire luminaire;
     LED_Module *module_1;
+    LED_Driver *driver;
 };
 #endif // MAINWINDOW_H

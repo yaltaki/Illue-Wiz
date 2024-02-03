@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "core/LED_components/led_module.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -15,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     else
     {
         qDebug() << "Error: connection with database failed";
-    }    
+    }
 
     QSqlQueryModel *module_model_1 = new QSqlQueryModel;
     module_model_1->setQuery("SELECT id, name FROM module ORDER BY id");
@@ -38,14 +37,15 @@ MainWindow::MainWindow(QWidget *parent)
     this->ui->driverComboBox->setModel(module_model_3);
     this->ui->driverComboBox->setModelColumn(1);
 
-    connect(ui->btn_steps_25,&QPushButton::clicked, this, [this]{ onStepChange(25); });
-    connect(ui->btn_steps_50,&QPushButton::clicked, this, [this]{ onStepChange(50); });
-    connect(ui->btn_steps_100,&QPushButton::clicked, this, [this]{ onStepChange(100); });
-    connect(ui->btn_steps_200,&QPushButton::clicked, this, [this]{ onStepChange(200); });
+    connect(ui->btn_steps_25, &QPushButton::clicked, this, [this]
+            { onStepChange(25); });
+    connect(ui->btn_steps_50, &QPushButton::clicked, this, [this]
+            { onStepChange(50); });
+    connect(ui->btn_steps_100, &QPushButton::clicked, this, [this]
+            { onStepChange(100); });
+    connect(ui->btn_steps_200, &QPushButton::clicked, this, [this]
+            { onStepChange(200); });
 }
-
-LED_Module *ModuA = new LED_Module;
-LED_Module *ModuB = new LED_Module;
 
 MainWindow::~MainWindow()
 {
@@ -54,25 +54,44 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_moduleComboBox_1_currentIndexChanged(int index)
 {
-    QAbstractItemModel* model = this->ui->moduleComboBox_1->model();
+    QAbstractItemModel *model = this->ui->moduleComboBox_1->model();
     QModelIndex module_index = model->index(index, 0);
     int module_id = model->data(module_index).toInt();
 
     QSqlQuery *query = new QSqlQuery;
 
-    query->prepare("SELECT If_min, If_max FROM module WHERE id = (:module_id)");
+    query->prepare("SELECT * FROM module WHERE id=(:module_id)");
     query->bindValue(":module_id", module_id);
     query->exec();
     query->first();
 
     QSqlRecord rec = query->record();
-    int min_i = rec.indexOf("If_min");
-    int max_i = rec.indexOf("If_max");
-    //qDebug() << query->value(min_i).toInt() << query->value(max_i).toInt();
-    QString concat = query->value(min_i).toString() + " / " + query->value(max_i).toString();
+    QString name = query->value(rec.indexOf("name")).toString();
+    QString code = query->value(rec.indexOf("code")).toString();
+    QString manu = query->value(rec.indexOf("manufacturer")).toString();
+    // If
+    unsigned If[3];
+    If[0] = query->value(rec.indexOf("If_min")).toUInt();
+    If[1] = query->value(rec.indexOf("If_rated")).toUInt();
+    If[2] = query->value(rec.indexOf("If_max")).toUInt();
+    // LF_I
+    double LF_I[3];
+    LF_I[0] = query->value(rec.indexOf("c_LF_I_1")).toDouble();
+    LF_I[1] = query->value(rec.indexOf("c_LF_I_2")).toDouble();
+    LF_I[2] = query->value(rec.indexOf("c_LF_I_3")).toDouble();
+    // V_I
+    double V_I[3];
+    V_I[0] = query->value(rec.indexOf("c_V_I_1")).toDouble();
+    V_I[1] = query->value(rec.indexOf("c_V_I_2")).toDouble();
+    V_I[2] = query->value(rec.indexOf("c_V_I_3")).toDouble();
 
-    //pcode LED_Module module1 = LED_Module(query->value(indexOf("id")).toInt(), query->value(indexOf("Name")).toString, ...);
-    // int MinCurrent = module1.getMinCurrent();
+    delete this->module_1;
+    this->module_1 = new LED_Module(
+        name,code,manu,
+        If,LF_I,V_I
+    );
+
+    QString concat = this->module_1->get_current_limits();
     this->ui->module_If_maxLineEdit_1->setText(concat);
 }
 
@@ -83,51 +102,60 @@ void MainWindow::onStepChange(int val)
 
 void MainWindow::on_driverComboBox_currentIndexChanged(int index)
 {
-    QSqlQueryModel *DR_MinMax = new QSqlQueryModel;
-    DR_MinMax->setQuery("SELECT id, If_min, If_max, V_min, V_max, P_1_max, P_2_max, isDualChannel FROM driver ORDER BY id");
-    DR_MinMax->setHeaderData(0, Qt::Horizontal, tr("id"));
-    DR_MinMax->setHeaderData(1, Qt::Horizontal, tr("If_min"));
-    DR_MinMax->setHeaderData(2, Qt::Horizontal, tr("If_max"));
-    DR_MinMax->setHeaderData(3, Qt::Horizontal, tr("V_min"));
-    DR_MinMax->setHeaderData(4, Qt::Horizontal, tr("V_max"));
-    DR_MinMax->setHeaderData(5, Qt::Horizontal, tr("P_1_max"));
-    DR_MinMax->setHeaderData(6, Qt::Horizontal, tr("P_2_max"));
-    DR_MinMax->setHeaderData(7, Qt::Horizontal, tr("isDualChannel"));
+    QAbstractItemModel *model = this->ui->driverComboBox->model();
+    QModelIndex driver_index = model->index(index, 0);
+    int driver_id = model->data(driver_index).toInt();
 
-    QString concac1 = "";
-    concac1 = DR_MinMax->data(DR_MinMax->index(index, 1)).toString();
-    concac1 += " / ";
-    concac1 += DR_MinMax->data(DR_MinMax->index(index, 2)).toString();
+    QSqlQuery *query = new QSqlQuery;
 
-    QString concac2 = "";
-    concac2 = DR_MinMax->data(DR_MinMax->index(index, 3)).toString();
-    concac2 += " / ";
-    concac2 += DR_MinMax->data(DR_MinMax->index(index, 4)).toString();
+    query->prepare("SELECT * FROM driver WHERE id=(:driver_id)");
+    query->bindValue(":driver_id", driver_id);
+    query->exec();
+    query->first();
 
-    QString concac3 = "";
-    if(DR_MinMax->data(DR_MinMax->index(index,7)).toBool())
-    {
-        concac3 = DR_MinMax->data(DR_MinMax->index(index, 5)).toString();
-        concac3 += " / ";
-        concac3 += DR_MinMax->data(DR_MinMax->index(index, 6)).toString();
-    } else {
-        concac3 = DR_MinMax->data(DR_MinMax->index(index, 5)).toString();
-    }
+    QSqlRecord rec = query->record();
+    QString name = query->value(rec.indexOf("name")).toString();
+    QString code = query->value(rec.indexOf("code")).toString();
+    QString manu = query->value(rec.indexOf("manufacturer")).toString();
 
-    this->ui->driver_If_maxLineEdit->setText(concac1);
-    this->ui->driver_V_maxLineEdit->setText(concac2);
-    this->ui->driver_P_maxLineEdit->setText(concac3);
+    // Vf
+    unsigned Vf[2];
+    Vf[0] = query->value(rec.indexOf("V_min")).toUInt();
+    Vf[1] = query->value(rec.indexOf("V_max")).toUInt();
 
-    ModuA->Update(index, this);
-    ModuA->PrintMake();
+    // If
+    unsigned If[3];
+    If[0] = query->value(rec.indexOf("If_min")).toUInt();
+    If[1] = query->value(rec.indexOf("If_default")).toUInt();
+    If[2] = query->value(rec.indexOf("If_max")).toUInt();
 
-    if(this->ui->moduleGroupBox_2->isChecked())
-    {
-        ModuA->Copy(ModuB);
-        ModuB->PrintMake();
-        ModuB->PrintIf();
-    }
+    // P_out
+    unsigned P_out[2];
+    P_out[0] = query->value(rec.indexOf("P_1_max")).toUInt();
+    P_out[1] = query->value(rec.indexOf("P_2_max")).toUInt();
 
+    bool bDualChannel = query->value(rec.indexOf("isDualChannel")).toBool();
 
+    // C_N
+    double C_N[3];
+    C_N[0] = query->value(rec.indexOf("c_n_1")).toDouble();
+    C_N[1] = query->value(rec.indexOf("c_n_2")).toDouble();
+    C_N[2] = query->value(rec.indexOf("c_n_3")).toDouble();
+
+    // C_PF
+    double C_PF[3];
+    C_PF[0] = query->value(rec.indexOf("c_pf_1")).toDouble();
+    C_PF[1] = query->value(rec.indexOf("c_pf_2")).toDouble();
+    C_PF[2] = query->value(rec.indexOf("c_pf_3")).toDouble();
+
+    delete this->driver;
+    this->driver = new LED_Driver(
+        name,code,manu,
+        Vf,If,P_out,
+        bDualChannel, C_N, C_PF
+    );
+
+    this->ui->driver_If_maxLineEdit->setText(this->driver->get_current_limits());
+    this->ui->driver_V_maxLineEdit->setText(this->driver->get_voltage_limits());
+    this->ui->driver_P_maxLineEdit->setText(this->driver->get_power_limits());
 }
-
