@@ -36,10 +36,12 @@ public:
     QString get_name() const;
     QString get_code() const;
     QString get_manufacturer() const;
-    unsigned short get_If_min() const;
-    unsigned short get_If_max() const;
-    double get_V_min() const;
-    double get_V_max() const;
+    unsigned int get_If_min() const;
+    unsigned int get_If_max() const;
+    unsigned int get_V_min() const;
+    unsigned int get_V_max() const;
+    unsigned int get_P_1() const;
+    unsigned int get_P_2() const;
 
     // Display methods
     QString get_current_limits() const;
