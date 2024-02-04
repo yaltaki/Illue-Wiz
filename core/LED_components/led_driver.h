@@ -15,6 +15,7 @@ private:
     bool bDualChannel;
     const double C_N[3];
     const double C_PF[3];
+
 public:
     LED_Driver(
         QString &name,
@@ -25,11 +26,10 @@ public:
         unsigned int P_out[2],
         bool bDualChannel,
         double C_N[3],
-        double C_PF[3]
-    );
-    LED_Driver(const LED_Driver &source);   // Copy
-    LED_Driver(LED_Driver &&source);        // Move
-    ~LED_Driver();                          // Destruct
+        double C_PF[3]);
+    // LED_Driver(const LED_Driver &source);   // Copy
+    // LED_Driver(LED_Driver &&source);        // Move
+    // ~LED_Driver(); // Destruct
 
     // ========================================================================
     // Getters
