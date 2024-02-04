@@ -55,11 +55,9 @@ QString LED_Driver::get_power_limits() const
 
 double LED_Driver::calc_powerfactor(double const &power) const
 {
-    // unsure of equation
-    return power;
+    return ((power * power * C_PF[0]) + (power * C_PF[1]) + (C_PF[2]));
 }
 double LED_Driver::calc_efficiency(double const &power) const
 {
-    // unsure of equation
-    return power;
+    return ((power * power * C_N[0]) + (power * C_N[1]) + (C_N[2]));
 }
