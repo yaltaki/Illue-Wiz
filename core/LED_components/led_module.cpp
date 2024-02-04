@@ -3,20 +3,15 @@
 #include "led_module.h"
 
 LED_Module::LED_Module( // 6 args constructor
-    QString &name,
-    QString &code,
-    QString &manufacturer,
+    QString &name, QString &code, QString &manufacturer,
     unsigned int If[3],
     double LF_I[3],
-    double V_I[3]) : name{name}, code{code}, manufacturer{manufacturer},
-                     If{If[0], If[1], If[2]},
-                     LF_I{LF_I[0], LF_I[1], LF_I[2]},
-                     V_I{V_I[0], V_I[1], V_I[2]}
+    double V_I[3])
+    : name{name}, code{code}, manufacturer{manufacturer},
+      If{If[0], If[1], If[2]},
+      LF_I{LF_I[0], LF_I[1], LF_I[2]},
+      V_I{V_I[0], V_I[1], V_I[2]}
 {
-    qDebug() << "LED Module " << this->name << " initialised.";
-    qDebug() << "If: \t" << If[0] << ", " << If[1] << ", " << If[2] << " mA";
-    qDebug() << "LF_I: \t" << LF_I[0] << ", " << LF_I[1] << ", " << LF_I[2];
-    qDebug() << "V_I: \t" << V_I[0] << ", " << V_I[1] << ", " << V_I[2];
 }
 
 // LED_Module::LED_Module(const LED_Module &source) // Copy Constructor
@@ -52,42 +47,26 @@ LED_Module::LED_Module( // 6 args constructor
 // }
 
 // Getters
-QString LED_Module::get_name() const
-{
-    return this->name;
-}
+QString LED_Module::get_name() const { return this->name; }
 QString LED_Module::get_code() const { return this->code; }
 QString LED_Module::get_manufacturer() const { return this->manufacturer; }
-
 unsigned LED_Module::get_If_min() const { return this->If[0]; }
 unsigned LED_Module::get_If_rated() const { return this->If[1]; }
 unsigned LED_Module::get_If_max() const { return this->If[2]; }
-
-double LED_Module::get_V_max() const
-{
-    return this->calc_voltage(this->get_If_max());
-}
-double LED_Module::get_V_min() const
-{
-    return this->calc_voltage(this->get_If_min());
-}
+double LED_Module::get_V_max() const { return this->calc_voltage(this->get_If_max()); }
+double LED_Module::get_V_min() const { return this->calc_voltage(this->get_If_min()); }
 
 QString LED_Module::get_current_limits() const
 {
-    QString output;
-    output = QString::number(this->get_If_min());
-    output += " / ";
-    output += QString::number(this->get_If_max());
-    return output;
+    return QString("%1 / %2")
+        .arg(this->get_If_min())
+        .arg(this->get_If_max());
 }
-
 QString LED_Module::get_voltage_limits() const
 {
-    QString output;
-    output = QString::number(this->get_V_min(), 'f', 1);
-    output += " / ";
-    output += QString::number(this->get_V_max(), 'f', 1);
-    return output;
+    return QString("%1 / %2")
+        .arg(QString::number(this->get_V_min(), 'f', 1))
+        .arg(QString::number(this->get_V_max(), 'f', 1));
 }
 
 double LED_Module::calc_flux(unsigned const &current) const
@@ -95,7 +74,6 @@ double LED_Module::calc_flux(unsigned const &current) const
     double _1 = this->LF_I[0] * current * current;
     double _2 = this->LF_I[1] * current;
     double _3 = this->LF_I[2];
-
     return _1 + _2 + _3;
 }
 double LED_Module::calc_voltage(unsigned const &current) const
@@ -103,7 +81,6 @@ double LED_Module::calc_voltage(unsigned const &current) const
     double _1 = this->V_I[0] * current * current;
     double _2 = this->V_I[1] * current;
     double _3 = this->V_I[2];
-
     return _1 + _2 + _3;
 }
 double LED_Module::calc_power(unsigned const &current) const
@@ -114,9 +91,7 @@ double LED_Module::calc_efficiency(unsigned const &current) const
 {
     double flux = this->calc_flux(current);
     double power = this->calc_power(current);
-
-    if (not power)
+    if (!current)
         return 0;
-
     return flux / power;
 }

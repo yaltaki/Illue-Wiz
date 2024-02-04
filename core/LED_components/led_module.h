@@ -16,9 +16,7 @@ private:
 public:
     // Constructors
     LED_Module( // 6 arg Constructor
-        QString &name,
-        QString &code,
-        QString &manufacturer,
+        QString &name, QString &code, QString &manufacturer,
         unsigned int If[3],
         double LF_I[3],
         double V_I[3]);
@@ -41,7 +39,7 @@ public:
     QString get_current_limits() const;
     QString get_voltage_limits() const;
 
-    // Methods in LedModule
+    // Methods in LED_Module
     double calc_flux(unsigned const &current) const; // unit: Lumen (lm)
     double calc_voltage(unsigned const &current) const;
     double calc_power(unsigned const &current) const;
