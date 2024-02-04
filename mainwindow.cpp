@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow)
+    : QMainWindow(parent), ui(new Ui::MainWindow), module_1{nullptr}
 {
     ui->setupUi(this);
     this->db = QSqlDatabase::addDatabase("QSQLITE");
@@ -85,7 +85,11 @@ void MainWindow::on_moduleComboBox_1_currentIndexChanged(int index)
     V_I[1] = query->value(rec.indexOf("c_V_I_2")).toDouble();
     V_I[2] = query->value(rec.indexOf("c_V_I_3")).toDouble();
 
-    //delete this->module_1;
+    if (not(this->module_1 == nullptr))
+    {
+        qDebug() << "Deleting old `module_1` at addr" << this->module_1 ; 
+        delete this->module_1;
+    }
     this->module_1 = new LED_Module(
         name, code, manu,
         If, LF_I, V_I);

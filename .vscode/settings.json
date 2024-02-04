@@ -7,6 +7,7 @@
         "markdown"
     ],
     "files.associations": {
+        ".env": "env",
         "atomic": "cpp",
         "bit": "cpp",
         "cctype": "cpp",
@@ -49,6 +50,15 @@
         "xstddef": "cpp",
         "xstring": "cpp",
         "xtr1common": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "*.tcc": "cpp",
+        "charconv": "cpp",
+        "algorithm": "cpp",
+        "functional": "cpp",
+        "random": "cpp",
+        "format": "cpp",
+        "numeric": "cpp",
+        "ratio": "cpp",
+        "variant": "cpp"
     }
 }

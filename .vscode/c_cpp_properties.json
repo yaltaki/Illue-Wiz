@@ -2,7 +2,11 @@
   "configurations": [
     {
       "name": "Linux",
-      "includePath": ["${workspaceFolder}/**", "~/Qt/6.6.1/gcc_64/include/**"],
+      "includePath": [
+        "~/Qt/6.6.1/gcc_64/include/**",
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/../debug-build/**"
+      ],
       "defines": [],
       "compilerPath": "/usr/bin/gcc",
       "cStandard": "c17",
