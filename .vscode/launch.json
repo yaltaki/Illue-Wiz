@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "illue-wiz",
+      "name": "build-debug illue-wiz",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/../debug-build/illue-wiz",
@@ -24,7 +24,33 @@
           "ignoreFailures": true
         }
       ],
-      "preLaunchTask": "build",
+      "preLaunchTask": "debug-build",
+      "miDebuggerPath": "/usr/bin/gdb"
+    },
+    {
+      "name": "Debug wip-ideas",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/wip-ideas/debug/main",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/wip-ideas/debug",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "Build wip-ideas",
       "miDebuggerPath": "/usr/bin/gdb"
     }
   ]

@@ -9,10 +9,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    core/LED_components/led_driver.cpp \
+    core/LED_components/led_module.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    core/LED_components/led_driver.h \
+    core/LED_components/led_module.h \
     mainwindow.h
 
 FORMS += \

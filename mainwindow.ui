@@ -144,6 +144,26 @@
                   </property>
                  </widget>
                 </item>
+                <item row="3" column="1">
+                 <widget class="QLineEdit" name="module_V_maxLineEdit_1">
+                  <property name="styleSheet">
+                   <string notr="true">background-color: lightgrey;</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                  <property name="readOnly">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="module_V_maxLabel_1">
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;V&lt;span style=&quot; vertical-align:sub;&quot;&gt;MIN&lt;/span&gt;/V&lt;span style=&quot; vertical-align:sub;&quot;&gt;MAX&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </item>
              </layout>
@@ -151,6 +171,9 @@
            </item>
            <item>
             <widget class="QGroupBox" name="moduleGroupBox_2">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
              <property name="title">
               <string>Channel 2:</string>
              </property>
@@ -294,6 +317,26 @@
                          </widget>
                         </item>
                        </layout>
+                      </item>
+                      <item row="3" column="1">
+                       <widget class="QLineEdit" name="module_V_maxLineEdit_2">
+                        <property name="styleSheet">
+                         <string notr="true">background-color: lightgrey;</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="module_V_maxLabel_2">
+                        <property name="text">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;V&lt;span style=&quot; vertical-align:sub;&quot;&gt;MIN&lt;/span&gt;/V&lt;span style=&quot; vertical-align:sub;&quot;&gt;MAX&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
                       </item>
                      </layout>
                     </item>
@@ -523,7 +566,7 @@
            <item>
             <widget class="QTabWidget" name="tabWidget">
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="tab">
               <attribute name="title">
