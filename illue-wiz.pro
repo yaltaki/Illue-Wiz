@@ -11,16 +11,16 @@ CONFIG += c++17
 SOURCES += \
     core/LED_components/led_driver.cpp \
     core/LED_components/led_module.cpp \
-    main.cpp \
-    mainwindow.cpp
+    core/main.cpp \
+    core/mainwindow.cpp
 
 HEADERS += \
     core/LED_components/led_driver.h \
     core/LED_components/led_module.h \
-    mainwindow.h
+    core/mainwindow.h
 
 FORMS += \
-    mainwindow.ui
+    core/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

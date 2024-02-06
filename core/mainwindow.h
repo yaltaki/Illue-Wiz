@@ -10,8 +10,8 @@
 #include <QPushButton>
 #include <QSqlDatabase>
 
-#include "core/LED_components/led_module.h"
-#include "core/LED_components/led_driver.h"
+#include "LED_components/led_module.h"
+#include "LED_components/led_driver.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
