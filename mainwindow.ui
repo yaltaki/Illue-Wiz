@@ -318,6 +318,23 @@
                         </item>
                        </layout>
                       </item>
+                      <item row="3" column="1">
+                       <widget class="QLineEdit" name="module_V_maxLineEdit_2">
+                        <property name="styleSheet">
+                         <string notr="true">background-color: lightgrey;</string>
+                        </property>
+                        <property name="readOnly">
+                         <bool>true</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="module_V_maxLabel_2">
+                        <property name="text">
+                         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;V&lt;span style=&quot; vertical-align:sub;&quot;&gt;MIN&lt;/span&gt;/V&lt;span style=&quot; vertical-align:sub;&quot;&gt;MAX&lt;/span&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
                      </layout>
                     </item>
                    </layout>

@@ -3,7 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow),
-      module_1{nullptr}, driver{nullptr}
+    module_1{nullptr}, module_2{nullptr}, driver{nullptr}
 {
     ui->setupUi(this);
     this->db = QSqlDatabase::addDatabase("QSQLITE");
@@ -53,6 +53,7 @@ MainWindow::~MainWindow()
     delete ui;
     // delete luminaire;
     delete module_1;
+    delete module_2;
     delete driver;
 }
 
@@ -65,12 +66,18 @@ void MainWindow::updateLimitBoxes() const
         this->ui->module_If_maxLineEdit_1->setText(this->module_1->get_current_limits());
         this->ui->module_V_maxLineEdit_1->setText(this->module_1->get_voltage_limits());
     }
+    if (!(this->module_2 == nullptr))
+    {
+        this->ui->module_If_maxLineEdit_2->setText(this->module_2->get_current_limits());
+        this->ui->module_V_maxLineEdit_2->setText(this->module_2->get_voltage_limits());
+    }
     if (!(this->driver == nullptr))
     {
         this->ui->driver_If_maxLineEdit->setText(this->driver->get_current_limits());
         this->ui->driver_V_maxLineEdit->setText(this->driver->get_voltage_limits());
         this->ui->driver_P_maxLineEdit->setText(this->driver->get_power_limits());
     }
+
 }
 
 void MainWindow::on_moduleComboBox_1_currentIndexChanged(int index)
@@ -109,6 +116,50 @@ void MainWindow::on_moduleComboBox_1_currentIndexChanged(int index)
         delete this->module_1;
 
     this->module_1 = new LED_Module(
+        name, code, manu,
+        If, LF_I, V_I);
+
+    delete query;
+
+    this->updateLimitBoxes();
+}
+
+void MainWindow::on_moduleComboBox_2_currentIndexChanged(int index)
+{
+    QAbstractItemModel *model = this->ui->moduleComboBox_2->model();
+    QModelIndex module_index = model->index(index, 0);
+    int module_id = model->data(module_index).toInt();
+
+    QSqlQuery *query = new QSqlQuery;
+    query->prepare("SELECT * FROM module WHERE id=(:module_id)");
+    query->bindValue(":module_id", module_id);
+    query->exec();
+    query->first();
+    QSqlRecord rec = query->record();
+
+    QString name = query->value(rec.indexOf("name")).toString();
+    QString code = query->value(rec.indexOf("code")).toString();
+    QString manu = query->value(rec.indexOf("manufacturer")).toString();
+
+    unsigned If[3];
+    If[0] = query->value(rec.indexOf("If_min")).toUInt();
+    If[1] = query->value(rec.indexOf("If_rated")).toUInt();
+    If[2] = query->value(rec.indexOf("If_max")).toUInt();
+
+    double LF_I[3];
+    LF_I[0] = query->value(rec.indexOf("c_LF_I_1")).toDouble();
+    LF_I[1] = query->value(rec.indexOf("c_LF_I_2")).toDouble();
+    LF_I[2] = query->value(rec.indexOf("c_LF_I_3")).toDouble();
+
+    double V_I[3];
+    V_I[0] = query->value(rec.indexOf("c_V_I_1")).toDouble();
+    V_I[1] = query->value(rec.indexOf("c_V_I_2")).toDouble();
+    V_I[2] = query->value(rec.indexOf("c_V_I_3")).toDouble();
+
+    if (not(this->module_2 == nullptr))
+        delete this->module_2;
+
+    this->module_2 = new LED_Module(
         name, code, manu,
         If, LF_I, V_I);
 
@@ -171,3 +222,11 @@ void MainWindow::on_driverComboBox_currentIndexChanged(int index)
 
     this->updateLimitBoxes();
 }
+
+
+void MainWindow::on_checkBox_Copy_pressed()
+{
+    this->module_2 = module_1;
+    this->updateLimitBoxes();
+}
+
