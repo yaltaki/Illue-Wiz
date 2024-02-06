@@ -323,6 +323,9 @@
                         <property name="styleSheet">
                          <string notr="true">background-color: lightgrey;</string>
                         </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
                         <property name="readOnly">
                          <bool>true</bool>
                         </property>

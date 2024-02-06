@@ -38,8 +38,6 @@ private slots:
     void on_moduleComboBox_2_currentIndexChanged(int index);
     void on_driverComboBox_currentIndexChanged(int index);
 
-    void on_checkBox_Copy_pressed();
-
 private:
     QSqlDatabase db;
     // LED_Luminaire luminaire;

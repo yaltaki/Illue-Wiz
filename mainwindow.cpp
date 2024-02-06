@@ -223,10 +223,3 @@ void MainWindow::on_driverComboBox_currentIndexChanged(int index)
     this->updateLimitBoxes();
 }
 
-
-void MainWindow::on_checkBox_Copy_pressed()
-{
-    this->module_2 = module_1;
-    this->updateLimitBoxes();
-}
-
