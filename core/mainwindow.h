@@ -34,9 +34,9 @@ public:
     void updateLimitBoxes() const;
 
 private slots:
-    void on_moduleComboBox_1_currentIndexChanged(int index);
-    void on_moduleComboBox_2_currentIndexChanged(int index);
-    void on_driverComboBox_currentIndexChanged(int index);
+    void IndexChangeModule_1(int index);
+    void IndexChangeModule_2(int index);
+    void IndexChangeDriver(int index);
 
 private:
     QSqlDatabase db;

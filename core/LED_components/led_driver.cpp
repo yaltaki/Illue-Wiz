@@ -11,12 +11,12 @@ LED_Driver::LED_Driver( // 6 args constructor
     double C_N[3],
     double C_PF[3])
     : name{name}, code{code}, manufacturer{manufacturer},
-      Vf{Vf[0], Vf[1]},
-      If{If[0], If[1], If[2]},
-      P_out{P_out[0], P_out[1]},
-      bDualChannel{bDualChannel},
-      C_N{C_N[0], C_N[1], C_N[2]},
-      C_PF{C_PF[0], C_PF[1], C_PF[2]}
+    Vf{Vf[0], Vf[1]},
+    If{If[0], If[1], If[2]},
+    P_out{P_out[0], P_out[1]},
+    bDualChannel{bDualChannel},
+    C_N{C_N[0], C_N[1], C_N[2]},
+    C_PF{C_PF[0], C_PF[1], C_PF[2]}
 {
 }
 

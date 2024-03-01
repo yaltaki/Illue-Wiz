@@ -8,9 +8,9 @@ LED_Module::LED_Module( // 6 args constructor
     double LF_I[3],
     double V_I[3])
     : name{name}, code{code}, manufacturer{manufacturer},
-      If{If[0], If[1], If[2]},
-      LF_I{LF_I[0], LF_I[1], LF_I[2]},
-      V_I{V_I[0], V_I[1], V_I[2]}
+    If{If[0], If[1], If[2]},
+    LF_I{LF_I[0], LF_I[1], LF_I[2]},
+    V_I{V_I[0], V_I[1], V_I[2]}
 {
 }
 

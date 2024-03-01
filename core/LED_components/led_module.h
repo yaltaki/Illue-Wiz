@@ -29,9 +29,9 @@ public:
     QString get_name() const;
     QString get_code() const;
     QString get_manufacturer() const;
-    unsigned get_If_min() const;
-    unsigned get_If_rated() const;
-    unsigned get_If_max() const;
+    unsigned int get_If_min() const;
+    unsigned int get_If_rated() const;
+    unsigned int get_If_max() const;
     double get_V_min() const; // return calc_voltage(If[0])
     double get_V_max() const; // return calc_voltage(If[2])
 
