@@ -66,9 +66,9 @@ private:
     void UpdateDriverLumi(int current, int total);
 
     void UpdateDualMain(int input);
-    void UpdateDualModule(int current);
-    void UpdateDualChannels(int current, int series, int parallel);
-    void UpdateDualDriverLumi(int current, int total);
+    void UpdateDualModule(int current1, int current2);
+    void UpdateDualChannels(int current1, int series1, int parallel1, int current2, int series2, int parallel2);
+    void UpdateDualDriverLumi(int current1, int total1, int current2, int total2);
 
     void updateLimits();
     bool ModuleTwoActive();
