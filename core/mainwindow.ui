@@ -906,7 +906,7 @@ Efficacy</string>
                     <number>100</number>
                    </property>
                    <property name="maximum">
-                    <number>1500</number>
+                    <number>960</number>
                    </property>
                    <property name="singleStep">
                     <number>25</number>
@@ -915,7 +915,7 @@ Efficacy</string>
                     <number>100</number>
                    </property>
                    <property name="value">
-                    <number>400</number>
+                    <number>100</number>
                    </property>
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>

@@ -30,13 +30,21 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void onStepChange(int val) const;
-    void updateLimitBoxes() const;
-
 private slots:
-    void IndexChangeModule_1(int index);
-    void IndexChangeModule_2(int index);
-    void IndexChangeDriver(int index);
+    void on_moduleComboBox_1_currentIndexChanged(int index);
+    void on_moduleComboBox_2_currentIndexChanged(int index);
+    void on_driverComboBox_currentIndexChanged(int index);
+
+    void on_n_seriesSpinBox_1_valueChanged(int arg1);
+    void on_n_parallelSpinBox_1_valueChanged(int arg1);
+    void on_n_seriesSpinBox_2_valueChanged(int arg1);
+    void on_n_parallelSpinBox_2_valueChanged(int arg1);
+
+    void on_horizontalSlider_valueChanged(int value);
+    void on_spinBox_valueChanged(int arg1);
+
+    void on_moduleGroupBox_2_clicked(bool checked);
+    void on_checkBox_Copy_clicked(bool checked);
 
 private:
     QSqlDatabase db;
@@ -44,5 +52,25 @@ private:
     LED_Module *module_1;
     LED_Module *module_2;
     LED_Driver *driver;
+
+    void connectToDatabase();
+    void setComboBoxModel();
+
+    void IndexChangeModule_1(int index);
+    void IndexChangeModule_2(int index);
+    void IndexChangeDriver(int index);
+
+    void UpdateMain(int input);
+    void UpdateModule(int current);
+    void UpdateChannels(int current, int series, int parallel);
+    void UpdateDriverLumi(int current, int total);
+
+    void UpdateDualMain(int input);
+    void UpdateDualModule(int current);
+    void UpdateDualChannels(int current, int series, int parallel);
+    void UpdateDualDriverLumi(int current, int total);
+
+    void updateLimits();
+    bool ModuleTwoActive();
 };
 #endif // MAINWINDOW_H

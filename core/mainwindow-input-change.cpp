@@ -42,6 +42,9 @@ void MainWindow::IndexChangeModule_1(int index)
         If, LF_I, V_I);
 
     delete query;
+
+    this->ui->module_If_maxLineEdit_1->setText(this->module_1->get_current_limits());
+    this->ui->module_V_maxLineEdit_1->setText(this->module_1->get_voltage_limits());
 }
 
 void MainWindow::IndexChangeModule_2(int index)
@@ -85,6 +88,9 @@ void MainWindow::IndexChangeModule_2(int index)
         If, LF_I, V_I);
 
     delete query;
+
+    this->ui->module_If_maxLineEdit_2->setText(this->module_2->get_current_limits());
+    this->ui->module_V_maxLineEdit_2->setText(this->module_2->get_voltage_limits());
 }
 
 void MainWindow::IndexChangeDriver(int index)
@@ -139,4 +145,31 @@ void MainWindow::IndexChangeDriver(int index)
         bDualChannel, C_N, C_PF);
 
     delete query;
+
+    this->ui->driver_If_maxLineEdit->setText(this->driver->get_current_limits());
+    this->ui->driver_V_maxLineEdit->setText(this->driver->get_voltage_limits());
+    this->ui->driver_P_maxLineEdit->setText(this->driver->get_power_limits());
+}
+
+void MainWindow::updateLimits()
+{
+    int MaxMin = 100;
+    int MinMax = 960;
+
+    if(!(module_1 == nullptr) && !(driver == nullptr))
+    {
+        if(module_1->get_If_min() > driver->get_If_min()) MaxMin = module_1->get_If_min(); else MaxMin = driver->get_If_min();
+        if(module_1->get_If_max() < driver->get_If_max()) MinMax = module_1->get_If_max(); else MinMax = driver->get_If_max();
+    }
+
+    if(ModuleTwoActive())
+    {
+        if(MaxMin < module_2->get_If_min()) MaxMin = module_2->get_If_min();
+        if(MinMax > module_2->get_If_max()) MinMax = module_2->get_If_max();
+    }
+
+    ui->spinBox->setMinimum(MaxMin);
+    ui->spinBox->setMaximum(MinMax);
+    ui->horizontalSlider->setMinimum(MaxMin);
+    ui->horizontalSlider->setMaximum(MinMax);
 }
