@@ -67,7 +67,7 @@ void MainWindow::UpdateDriverLumi(int current, int total)
 
         this->ui->nominalFluxLineEdit->setText(QString("%1 lm").arg(totalFlux));
         this->ui->effectiveFluxLineEdit->setText(QString("%1 lm").arg(moduleFlux * LOR));
-        this->ui->ratedPowerLineEdit->setText(QString("%1").arg(inputPower));
+        this->ui->ratedPowerLineEdit->setText(QString("%1 W").arg(QString::number(inputPower, 'f', 2)));
         this->ui->overallEfficacyLineEdit->setText(QString("%1").arg(efficacy));
     }
 }

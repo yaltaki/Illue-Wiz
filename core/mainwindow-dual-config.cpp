@@ -52,7 +52,7 @@ void MainWindow::UpdateDualChannels(int current1, int series1, int parallel1, in
         double totalPower2 = this->module_2->calc_power(current2) * series2 * parallel2; // is also output power
 
         this->ui->channelLayoutLineEdit->setText(QString("%1 P x %2 S / %3 P x %4 S").arg(parallel1).arg(series1).arg(parallel2).arg(series2));
-        this->ui->numberOfModulesLineEdit->setText(QString("%1 / %2").arg(series1 * parallel1).arg(series2 * parallel2));
+        this->ui->numberOfModulesLineEdit->setText(QString("%1").arg((series1 * parallel1) + (series2 * parallel2)));
         this->ui->channelFluxLineEdit->setText(QString("%1 lm / %2 lm").arg(QString::number(totalFlux1, 'f', 0)).arg(QString::number(totalFlux2, 'f', 0)));
         this->ui->channelVoltageLineEdit->setText(QString("%1 V / %2 V").arg(QString::number(totalVoltage1, 'f', 1)).arg(QString::number(totalVoltage2, 'f', 1)));
         this->ui->channelPowerLineEdit->setText(QString("%1 W / %2 W").arg(QString::number(totalPower1, 'f', 2)).arg(QString::number(totalPower2, 'f', 2)));
@@ -83,14 +83,18 @@ void MainWindow::UpdateDualDriverLumi(int current1, int total1, int current2, in
         double totalFlux2 = moduleFlux2 * total2;
         double efficacy2 = (moduleFlux2 * LOR) / inputPower2;
 
-        this->ui->nominalPowerLineEdit->setText(QString("%1 W / %2 W").arg(QString::number(totalPower1, 'f', 2)).arg(QString::number(totalPower2, 'f', 2)));
-        this->ui->efficiencyLineEdit->setText(QString("%1\% / %2\%").arg(QString::number(efficiency1, 'f', 3)).arg(QString::number(efficiency2, 'f', 3)));
-        this->ui->powerFactorLineEdit->setText(QString("%1\% / %2\%").arg(QString::number(pfactor1 * 100, 'f', 3)).arg(QString::number(pfactor2 * 100, 'f', 3)));
-        this->ui->inputPowerLineEdit->setText(QString("%1 W / %2 W").arg(QString::number(inputPower1, 'f', 2)).arg(QString::number(inputPower2, 'f', 2)));
+        double tEfficiency = (efficiency1 < efficiency2) ? efficiency1 : efficiency2;
+        double tPFactor = (pfactor1 < pfactor2) ? pfactor1 : pfactor2;
+        double tOverallEfficacy = (efficacy1 < efficacy2) ? efficacy1 : efficacy2;
 
-        this->ui->nominalFluxLineEdit->setText(QString("%1 lm / %2 lm").arg(totalFlux1).arg(totalFlux2));
-        this->ui->effectiveFluxLineEdit->setText(QString("%1 lm / %2 lm").arg(moduleFlux1 * LOR).arg(moduleFlux2 * LOR));
-        this->ui->ratedPowerLineEdit->setText(QString("%1 / %2").arg(inputPower1).arg(inputPower2));
-        this->ui->overallEfficacyLineEdit->setText(QString("%1 / %2").arg(efficacy1).arg(efficacy2));
+        this->ui->nominalPowerLineEdit->setText(QString("%1 W").arg(QString::number((totalPower1+totalPower2), 'f', 2)));
+        this->ui->efficiencyLineEdit->setText(QString("%1\%").arg(QString::number(tEfficiency, 'f', 3))); // TO BE REVIEWED
+        this->ui->powerFactorLineEdit->setText(QString("%1\%").arg(QString::number(tPFactor * 100, 'f', 3))); // TO BE REVIEWED
+        this->ui->inputPowerLineEdit->setText(QString("%1 W").arg(QString::number((inputPower1+inputPower2), 'f', 2)));
+
+        this->ui->nominalFluxLineEdit->setText(QString("%1 lm").arg(totalFlux1+totalFlux2));
+        this->ui->effectiveFluxLineEdit->setText(QString("%1 lm").arg((moduleFlux1 + moduleFlux2) * LOR));
+        this->ui->ratedPowerLineEdit->setText(QString("%1 W").arg(QString::number((inputPower1+inputPower2), 'f', 2)));
+        this->ui->overallEfficacyLineEdit->setText(QString("%1").arg(tOverallEfficacy)); // TO BE REVIEWED
     }
 }
