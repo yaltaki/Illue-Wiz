@@ -17,6 +17,7 @@ SOURCES += \
     core/mainwindow-startup.cpp \
     core/mainwindow-setup-slots.cpp \
     core/mainwindow-single-config.cpp \
+    core/mainwindow-colour.cpp \
     core/mainwindow.cpp
 
 HEADERS += \

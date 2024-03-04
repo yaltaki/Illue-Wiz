@@ -9,6 +9,7 @@
 #include <QAbstractItemModel>
 #include <QPushButton>
 #include <QSqlDatabase>
+#include <QLineEdit>
 
 #include "LED_components/led_module.h"
 #include "LED_components/led_driver.h"
@@ -72,5 +73,8 @@ private:
 
     void updateLimits();
     bool ModuleTwoActive();
+
+    void checkColourI(unsigned value, unsigned threshold_low, unsigned threshold_high, QLineEdit *field);
+    void checkColourD(double value, double threshold_low, double threshold_high, QLineEdit *field);
 };
 #endif // MAINWINDOW_H

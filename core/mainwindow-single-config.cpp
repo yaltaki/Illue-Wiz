@@ -1,5 +1,4 @@
 #include <QApplication>
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -27,6 +26,10 @@ void MainWindow::UpdateModule(int current)
         this->ui->moduleFluxLineEdit->setText(QString("%1 lm").arg(QString::number(moduleFlux, 'f', 0)));
         this->ui->moduleVoltageLineEdit->setText(QString("%1 V").arg(QString::number(moduleVoltage, 'f', 1)));
         this->ui->modulePowerLineEdit->setText(QString("%1 W").arg(QString::number(modulePower, 'f', 2)));
+
+        checkColourI(current, module_1->get_If_min(), module_1->get_If_max(), ui->moduleCurrentLineEdit);
+        checkColourD(moduleVoltage, module_1->get_V_min(), module_1->get_V_max(), ui->moduleVoltageLineEdit);
+        checkColourD(modulePower, module_1->get_If_min()*module_1->get_V_min()/1000, module_1->get_If_max()*module_1->get_V_max()/1000, ui->modulePowerLineEdit);
     }
 }
 
@@ -43,6 +46,9 @@ void MainWindow::UpdateChannels(int current, int series, int parallel)
         this->ui->channelFluxLineEdit->setText(QString("%1 lm").arg(QString::number(totalFlux, 'f', 0)));
         this->ui->channelVoltageLineEdit->setText(QString("%1 V").arg(QString::number(totalVoltage, 'f', 1)));
         this->ui->channelPowerLineEdit->setText(QString("%1 W").arg(QString::number(totalPower, 'f', 2)));
+
+        checkColourD(totalVoltage, module_1->get_V_min(), module_1->get_V_max(), ui->channelVoltageLineEdit);
+        checkColourD(totalPower, module_1->get_If_min()*module_1->get_V_min()/1000, module_1->get_If_max()*module_1->get_V_max()/1000, ui->channelPowerLineEdit);
     }
 }
 
@@ -69,5 +75,10 @@ void MainWindow::UpdateDriverLumi(int current, int total)
         this->ui->effectiveFluxLineEdit->setText(QString("%1 lm").arg(moduleFlux * LOR));
         this->ui->ratedPowerLineEdit->setText(QString("%1 W").arg(QString::number(inputPower, 'f', 2)));
         this->ui->overallEfficacyLineEdit->setText(QString("%1").arg(efficacy));
+
+        checkColourD(totalPower, module_1->get_If_min()*module_1->get_V_min()/1000, module_1->get_If_max()*module_1->get_V_max()/1000, ui->nominalPowerLineEdit);
+        checkColourD(efficiency, 50, 100, ui->efficiencyLineEdit);
+        checkColourD(inputPower, module_1->get_If_min()*module_1->get_V_min()/1000, module_1->get_If_max()*module_1->get_V_max()/1000, ui->inputPowerLineEdit);
+        checkColourD(inputPower, module_1->get_If_min()*module_1->get_V_min()/1000, module_1->get_If_max()*module_1->get_V_max()/1000, ui->ratedPowerLineEdit);
     }
 }
