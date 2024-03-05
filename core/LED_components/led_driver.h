@@ -42,6 +42,7 @@ public:
     unsigned int get_V_max() const;
     unsigned int get_P_1() const;
     unsigned int get_P_2() const;
+    bool get_Dual() const;
 
     // Display methods
     QString get_current_limits() const;

@@ -30,6 +30,7 @@ unsigned int LED_Driver::get_V_max() const { return this->Vf[1]; }
 unsigned int LED_Driver::get_V_min() const { return this->Vf[0]; }
 unsigned int LED_Driver::get_P_1() const { return this->P_out[0]; }
 unsigned int LED_Driver::get_P_2() const { return this->P_out[1]; }
+bool LED_Driver::get_Dual() const { return bDualChannel; }
 
 QString LED_Driver::get_current_limits() const
 {

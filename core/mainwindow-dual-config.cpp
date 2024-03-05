@@ -1,5 +1,4 @@
 #include <QApplication>
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -36,6 +35,9 @@ void MainWindow::UpdateDualModule(int current1, int current2)
         this->ui->moduleFluxLineEdit->setText(QString("%1 lm / %2 lm").arg(QString::number(moduleFlux1, 'f', 0)).arg(QString::number(moduleFlux2, 'f', 0)));
         this->ui->moduleVoltageLineEdit->setText(QString("%1 V / %2 V").arg(QString::number(moduleVoltage1, 'f', 1)).arg(QString::number(moduleVoltage2, 'f', 1)));
         this->ui->modulePowerLineEdit->setText(QString("%1 W / %2 W").arg(QString::number(modulePower1, 'f', 2)).arg(QString::number(modulePower2, 'f', 2)));
+
+        ModuleColour(current1, moduleVoltage1, modulePower1);
+        ModuleColour(current2, moduleVoltage2, modulePower2);
     }
 }
 
@@ -56,6 +58,9 @@ void MainWindow::UpdateDualChannels(int current1, int series1, int parallel1, in
         this->ui->channelFluxLineEdit->setText(QString("%1 lm / %2 lm").arg(QString::number(totalFlux1, 'f', 0)).arg(QString::number(totalFlux2, 'f', 0)));
         this->ui->channelVoltageLineEdit->setText(QString("%1 V / %2 V").arg(QString::number(totalVoltage1, 'f', 1)).arg(QString::number(totalVoltage2, 'f', 1)));
         this->ui->channelPowerLineEdit->setText(QString("%1 W / %2 W").arg(QString::number(totalPower1, 'f', 2)).arg(QString::number(totalPower2, 'f', 2)));
+
+        ChannelsColour(totalVoltage1, totalPower1);
+        ChannelsColour(totalVoltage2, totalPower2);
     }
 }
 
@@ -96,5 +101,8 @@ void MainWindow::UpdateDualDriverLumi(int current1, int total1, int current2, in
         this->ui->effectiveFluxLineEdit->setText(QString("%1 lm").arg((moduleFlux1 + moduleFlux2) * LOR));
         this->ui->ratedPowerLineEdit->setText(QString("%1 W").arg(QString::number((inputPower1+inputPower2), 'f', 2)));
         this->ui->overallEfficacyLineEdit->setText(QString("%1").arg(tOverallEfficacy)); // TO BE REVIEWED
+
+        DriverLumiColour(totalPower1, efficiency1, inputPower1);
+        DriverLumiColour(totalPower2, efficiency2, inputPower2);
     }
 }

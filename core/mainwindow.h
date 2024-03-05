@@ -74,7 +74,18 @@ private:
     void updateLimits();
     bool ModuleTwoActive();
 
-    void checkColourI(unsigned value, unsigned threshold_low, unsigned threshold_high, QLineEdit *field);
-    void checkColourD(double value, double threshold_low, double threshold_high, QLineEdit *field);
+    void checkColourI(unsigned value, QLineEdit *field, bool ModOrDriver); // ModOrDriver: true = mod / false = driver
+    void checkColourV(double value, QLineEdit *field, bool ModOrDriver);
+    void checkColourP(double value, QLineEdit *field, bool ModOrDriver);
+    void checkColourE(double value, QLineEdit *field);
+
+    void checkColourI_D(unsigned value1, unsigned value2, QLineEdit *field, bool ModOrDriver); // ModOrDriver: true = mod / false = driver
+    void checkColourV_D(double value1, double value2, QLineEdit *field, bool ModOrDriver);
+    void checkColourP_D(double value1, double value2, QLineEdit *field, bool ModOrDriver);
+    void checkColourE_D(double value1, double value2, QLineEdit *field);
+
+    void ModuleColour(unsigned current, double moduleVoltage, double modulePower);
+    void ChannelsColour(double totalVoltage, double totalPower);
+    void DriverLumiColour(double totalPower, double efficiency, double inputPower);
 };
 #endif // MAINWINDOW_H
