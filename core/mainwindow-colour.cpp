@@ -204,7 +204,7 @@ void MainWindow::checkColourP(double value, QLineEdit *field, bool ModOrDriver)
 
 void MainWindow::checkColourE(double value, QLineEdit *field)
 {
-    double th_lowe = 50;
+    double th_lowe = 0;
     double th_highe = 100;
     if(value < th_lowe)
     {

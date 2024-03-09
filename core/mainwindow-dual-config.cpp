@@ -102,7 +102,7 @@ void MainWindow::UpdateDualDriverLumi(int current1, int total1, int current2, in
         this->ui->ratedPowerLineEdit->setText(QString("%1 W").arg(QString::number((inputPower1+inputPower2), 'f', 2)));
         this->ui->overallEfficacyLineEdit->setText(QString("%1").arg(tOverallEfficacy)); // TO BE REVIEWED
 
-        DriverLumiColour(totalPower1, efficiency1, inputPower1);
-        DriverLumiColour(totalPower2, efficiency2, inputPower2);
+        DriverLumiColour(totalPower1, tEfficiency, inputPower1);
+        DriverLumiColour(totalPower2, tEfficiency, inputPower2);
     }
 }
