@@ -47,6 +47,8 @@ private slots:
     void on_moduleGroupBox_2_clicked(bool checked);
     void on_checkBox_Copy_clicked(bool checked);
 
+    void on_stepsSpinBox_valueChanged(int arg1);
+
 private:
     QSqlDatabase db;
     // LED_Luminaire luminaire;
@@ -87,5 +89,7 @@ private:
     void ModuleColour(unsigned current, double moduleVoltage, double modulePower);
     void ChannelsColour(double totalVoltage, double totalPower);
     void DriverLumiColour(double totalPower, double efficiency, double inputPower);
+
+    void TableUpdate(int current);
 };
 #endif // MAINWINDOW_H

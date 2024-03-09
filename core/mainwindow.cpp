@@ -28,4 +28,3 @@ bool MainWindow::ModuleTwoActive()
 }
 
 // void MainWindow::onStepChange(int val) const { this->ui->stepsSpinBox->setValue(val); }
-
