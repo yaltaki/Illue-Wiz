@@ -9,6 +9,7 @@
 #include <QAbstractItemModel>
 #include <QPushButton>
 #include <QSqlDatabase>
+#include <QTableWidget>
 #include <QLineEdit>
 
 #include "LED_components/led_module.h"
@@ -55,6 +56,7 @@ private:
     LED_Module *module_1;
     LED_Module *module_2;
     LED_Driver *driver;
+    QTableWidget *table;
 
     void connectToDatabase();
     void setComboBoxModel();
@@ -91,5 +93,6 @@ private:
     void DriverLumiColour(double totalPower, double efficiency, double inputPower);
 
     void TableUpdate(int current);
+    void UpdateValuesForRow(int Step, int Value);
 };
 #endif // MAINWINDOW_H
