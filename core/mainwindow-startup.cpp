@@ -9,8 +9,6 @@ void MainWindow::connectToDatabase()
         qDebug() << "Database: connection ok";
     else
         qDebug() << "Error: connection with database failed";
-
-    QTableWidget *table = this->ui->tableWidget;
 }
 
 void MainWindow::setComboBoxModel()

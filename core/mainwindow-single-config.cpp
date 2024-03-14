@@ -23,7 +23,7 @@ void MainWindow::UpdateModule(int current)
         double modulePower = this->module_1->calc_power(current);
 
         this->ui->moduleCurrentLineEdit->setText(QString("%1 mA").arg(current));
-        this->ui->moduleFluxLineEdit->setText(QString("%1 lm").arg(QString::number(moduleFlux, 'f', 0)));
+        this->ui->moduleFluxLineEdit->setText(QString("%1 lm").arg(QString::number(moduleFlux, 'f', 2)));
         this->ui->moduleVoltageLineEdit->setText(QString("%1 V").arg(QString::number(moduleVoltage, 'f', 1)));
         this->ui->modulePowerLineEdit->setText(QString("%1 W").arg(QString::number(modulePower, 'f', 2)));
 
@@ -68,10 +68,10 @@ void MainWindow::UpdateDriverLumi(int current, int total)
         this->ui->powerFactorLineEdit->setText(QString("%1\%").arg(QString::number(pfactor * 100, 'f', 3)));
         this->ui->inputPowerLineEdit->setText(QString("%1 W").arg(QString::number(inputPower, 'f', 2)));
 
-        this->ui->nominalFluxLineEdit->setText(QString("%1 lm").arg(totalFlux));
-        this->ui->effectiveFluxLineEdit->setText(QString("%1 lm").arg(moduleFlux * LOR));
+        this->ui->nominalFluxLineEdit->setText(QString("%1 lm").arg(QString::number(totalFlux, 'f', 2)));
+        this->ui->effectiveFluxLineEdit->setText(QString("%1 lm").arg(QString::number((moduleFlux*LOR), 'f', 2)));
         this->ui->ratedPowerLineEdit->setText(QString("%1 W").arg(QString::number(inputPower, 'f', 2)));
-        this->ui->overallEfficacyLineEdit->setText(QString("%1").arg(efficacy));
+        this->ui->overallEfficacyLineEdit->setText(QString("%1 lm/W").arg(efficacy));
 
         DriverLumiColour(totalPower, efficiency, inputPower);
     }

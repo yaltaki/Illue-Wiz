@@ -32,7 +32,7 @@ void MainWindow::UpdateDualModule(int current1, int current2)
         double modulePower2 = this->module_2->calc_power(current2);
 
         this->ui->moduleCurrentLineEdit->setText(QString("%1 mA / %2 mA").arg(current1).arg(current2));
-        this->ui->moduleFluxLineEdit->setText(QString("%1 lm / %2 lm").arg(QString::number(moduleFlux1, 'f', 0)).arg(QString::number(moduleFlux2, 'f', 0)));
+        this->ui->moduleFluxLineEdit->setText(QString("%1 lm / %2 lm").arg(QString::number(moduleFlux1, 'f', 2)).arg(QString::number(moduleFlux2, 'f', 2)));
         this->ui->moduleVoltageLineEdit->setText(QString("%1 V / %2 V").arg(QString::number(moduleVoltage1, 'f', 1)).arg(QString::number(moduleVoltage2, 'f', 1)));
         this->ui->modulePowerLineEdit->setText(QString("%1 W / %2 W").arg(QString::number(modulePower1, 'f', 2)).arg(QString::number(modulePower2, 'f', 2)));
 
@@ -97,10 +97,10 @@ void MainWindow::UpdateDualDriverLumi(int current1, int total1, int current2, in
         this->ui->powerFactorLineEdit->setText(QString("%1\%").arg(QString::number(tPFactor * 100, 'f', 3))); // TO BE REVIEWED
         this->ui->inputPowerLineEdit->setText(QString("%1 W").arg(QString::number((inputPower1+inputPower2), 'f', 2)));
 
-        this->ui->nominalFluxLineEdit->setText(QString("%1 lm").arg(totalFlux1+totalFlux2));
-        this->ui->effectiveFluxLineEdit->setText(QString("%1 lm").arg((moduleFlux1 + moduleFlux2) * LOR));
+        this->ui->nominalFluxLineEdit->setText(QString("%1 lm").arg(QString::number((totalFlux1+totalFlux2), 'f', 2)));
+        this->ui->effectiveFluxLineEdit->setText(QString("%1 lm").arg(QString::number((moduleFlux1+moduleFlux2)*LOR, 'f', 2)));
         this->ui->ratedPowerLineEdit->setText(QString("%1 W").arg(QString::number((inputPower1+inputPower2), 'f', 2)));
-        this->ui->overallEfficacyLineEdit->setText(QString("%1").arg(tOverallEfficacy)); // TO BE REVIEWED
+        this->ui->overallEfficacyLineEdit->setText(QString("%1 lm/W").arg(tOverallEfficacy)); // TO BE REVIEWED
 
         DriverLumiColour(totalPower1, tEfficiency, inputPower1);
         DriverLumiColour(totalPower2, tEfficiency, inputPower2);

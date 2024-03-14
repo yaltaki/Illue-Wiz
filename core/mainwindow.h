@@ -50,13 +50,20 @@ private slots:
 
     void on_stepsSpinBox_valueChanged(int arg1);
 
+    void on_btn_steps_25_clicked();
+
+    void on_btn_steps_50_clicked();
+
+    void on_btn_steps_100_clicked();
+
+    void on_btn_steps_200_clicked();
+
 private:
     QSqlDatabase db;
     // LED_Luminaire luminaire;
     LED_Module *module_1;
     LED_Module *module_2;
     LED_Driver *driver;
-    QTableWidget *table;
 
     void connectToDatabase();
     void setComboBoxModel();

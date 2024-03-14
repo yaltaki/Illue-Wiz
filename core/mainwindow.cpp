@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->updateLimits();
     this->UpdateMain(100);
+    this->TableUpdate(100);
 }
 
 MainWindow::~MainWindow()
@@ -26,5 +27,3 @@ bool MainWindow::ModuleTwoActive()
 {
     return (!(module_2 == nullptr) && (ui->moduleGroupBox_2->isChecked()) && !(ui->checkBox_Copy->isChecked()));
 }
-
-// void MainWindow::onStepChange(int val) const { this->ui->stepsSpinBox->setValue(val); }

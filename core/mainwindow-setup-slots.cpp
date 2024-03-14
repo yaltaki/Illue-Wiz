@@ -106,3 +106,23 @@ void MainWindow::on_checkBox_Copy_clicked(bool checked)
     else
         this->UpdateMain(ui->horizontalSlider->value());
 }
+
+void MainWindow::on_btn_steps_25_clicked()
+{
+    this->ui->stepsSpinBox->setValue(this->ui->stepsSpinBox->value()+25);
+}
+
+void MainWindow::on_btn_steps_50_clicked()
+{
+    this->ui->stepsSpinBox->setValue(this->ui->stepsSpinBox->value()+50);
+}
+
+void MainWindow::on_btn_steps_100_clicked()
+{
+    this->ui->stepsSpinBox->setValue(this->ui->stepsSpinBox->value()+100);
+}
+
+void MainWindow::on_btn_steps_200_clicked()
+{
+    this->ui->stepsSpinBox->setValue(this->ui->stepsSpinBox->value()+200);
+}
