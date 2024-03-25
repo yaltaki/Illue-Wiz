@@ -109,20 +109,20 @@ void MainWindow::on_checkBox_Copy_clicked(bool checked)
 
 void MainWindow::on_btn_steps_25_clicked()
 {
-    this->ui->stepsSpinBox->setValue(this->ui->stepsSpinBox->value()+25);
+    this->ui->stepsSpinBox->setValue(25);
 }
 
 void MainWindow::on_btn_steps_50_clicked()
 {
-    this->ui->stepsSpinBox->setValue(this->ui->stepsSpinBox->value()+50);
+    this->ui->stepsSpinBox->setValue(50);
 }
 
 void MainWindow::on_btn_steps_100_clicked()
 {
-    this->ui->stepsSpinBox->setValue(this->ui->stepsSpinBox->value()+100);
+    this->ui->stepsSpinBox->setValue(100);
 }
 
 void MainWindow::on_btn_steps_200_clicked()
 {
-    this->ui->stepsSpinBox->setValue(this->ui->stepsSpinBox->value()+200);
+    this->ui->stepsSpinBox->setValue(200);
 }
