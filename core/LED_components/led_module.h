@@ -20,6 +20,21 @@ public:
         unsigned int If[3],
         double LF_I[3],
         double V_I[3]);
+
+    double modCurrent;
+    double modFlux;
+    double modVoltage;
+    double modPower;
+
+    double series;
+    double parallel;
+
+    double totalCurrent;
+    double totalFlux;
+    double totalVoltage;
+    double totalPower;
+    double inputPower;
+
     // LED_Module(const LED_Module &source); // Copy Constructor &module1 = module2
     // LED_Module(LED_Module &&source);      // Move Constructor LedModule module_1 = new LedModule()
     // ~LED_Module();                        // Destructor

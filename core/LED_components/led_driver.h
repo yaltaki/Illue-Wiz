@@ -27,6 +27,12 @@ public:
         bool bDualChannel,
         double C_N[3],
         double C_PF[3]);
+
+    double efficiency;
+    double efficacy;
+    double LOR;
+    double powerFactor;
+
     // LED_Driver(const LED_Driver &source);   // Copy
     // LED_Driver(LED_Driver &&source);        // Move
     // ~LED_Driver(); // Destruct

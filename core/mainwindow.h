@@ -77,6 +77,9 @@ private:
     void UpdateChannels(int current, int series, int parallel);
     void UpdateDriverLumi(int current, int total);
 
+    void UpdateSingle(int current, LED_Module *mod);
+    void UpdatePage();
+
     void UpdateDualMain(int input);
     void UpdateDualModule(int current1, int current2);
     void UpdateDualChannels(int current1, int series1, int parallel1, int current2, int series2, int parallel2);

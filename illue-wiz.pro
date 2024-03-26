@@ -12,6 +12,7 @@ SOURCES += \
     core/LED_components/led_driver.cpp \
     core/LED_components/led_module.cpp \
     core/main.cpp \
+    core/mainwindow-config.cpp \
     core/mainwindow-dual-config.cpp \
     core/mainwindow-input-change.cpp \
     core/mainwindow-startup.cpp \
